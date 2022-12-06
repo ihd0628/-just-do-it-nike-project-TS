@@ -7,6 +7,10 @@ import standardObject from './components/FilterBar/constantData/standardObject';
 
 import './itemList.scss';
 
+interface CheckList {
+  [key: string]: string[];
+}
+
 function ItemList() {
   const [products, setProducts] = useState<object[]>([]);
   const [sortStandard, setSortStandard] = useState<string>('신상품순');
