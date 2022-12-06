@@ -3,13 +3,21 @@ import ModalForItemList from './components/Modal/ModalForItemList';
 import ModarlPortalForItemList from './components/Modal/PortalForItemList';
 import './listHeader.scss';
 
+interface propsTypes {
+  filterHider: boolean;
+  setFilterHider: () => void;
+  sortStandard: string;
+  setSortStandard: () => void;
+  products: object[];
+}
+
 function ListHeader({
   filterHider,
   setFilterHider,
   sortStandard,
   setSortStandard,
   products,
-}) {
+}: propsTypes) {
   const [sortSetter, setSortSetter] = useState(false);
 
   const filterController = () => {
