@@ -2,15 +2,20 @@ import React from 'react';
 import './CartAside.scss';
 
 function CartAside({ cartItems, setCartItems }) {
+  const accessToken = localStorage.getItem('token');
+
   const cartOrder = () => {
-    fetch('http://127.0.0.1:8000/checkout/carts', {
-      method: 'PATCH',
+    fetch('http://192.168.243.200:8000/orders/carts', {
+      method: 'POST',
       headers: {
-        authorization: localStorage.getItem('token'),
+        authorization: accessToken,
       },
     })
       .then(res => res.json())
-      .then(data => setCartItems(data));
+      .then(data => {
+        setCartItems(data);
+        alert('주문이 완료되었습니다. 이승훈 존잘');
+      });
   };
 
   const sumCartRetailPrice = cartItems.reduce((sum, num) => {
@@ -18,7 +23,9 @@ function CartAside({ cartItems, setCartItems }) {
   }, 0);
 
   const calCartDiscountedPrice = cartItems.reduce((sum, num) => {
-    return (sum += num.quantity * Number(num.discountPrice));
+    return num.discountPrice !== null
+      ? sum + num.quantity * Number(num.retailPrice - num.discountPrice)
+      : sum;
   }, 0);
 
   return (
@@ -39,7 +46,7 @@ function CartAside({ cartItems, setCartItems }) {
             <span className="cartPrice">
               {calCartDiscountedPrice
                 ? calCartDiscountedPrice.toLocaleString()
-                : sumCartRetailPrice.toLocaleString()}
+                : 0}
               원
             </span>
           </div>

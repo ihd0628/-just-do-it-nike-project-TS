@@ -13,15 +13,15 @@ function ModalContentBox({
 }) {
   const deleteShoesItem = event => {
     event.nativeEvent.path[5].innerHTML = '';
-    // const deleteCartId = event.target.title;
-    // fetch(`http://10.10.10.10/carts/${deleteCartId}`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     authorization: localStorage.getItem('token'),
-    //   },
-    // })
-    //   .then(response => response.json())
-    //   .then(result => console.log(result));
+    const deleteCartId = event.target.title;
+    fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => response.json())
+      .then(result => console.log(result));
   };
 
   return (
@@ -48,11 +48,13 @@ function ModalContentBox({
           <div>수량: {quantity}</div>
           <div
             className={`modalDetailName ${
-              discountPrice === '' ? 'price0' : ''
+              discountPrice === null ? 'price0' : ''
             }`}
           >
             <div>
-              <div className="retailPriceBox">{Number(retailPrice)}원</div>
+              <div className="retailPriceBox">
+                {Number(retailPrice).toLocaleString()}원
+              </div>
               <div className="modalDiscountRatio">
                 {Math.floor(
                   (1 - Number(discountPrice) / Number(retailPrice)) * 100
@@ -60,7 +62,10 @@ function ModalContentBox({
                 % off
               </div>
             </div>
-            <div className="modalDiscountPrice"> {Number(discountPrice)}원</div>
+            <div className="modalDiscountPrice">
+              {' '}
+              {Number(discountPrice).toLocaleString()}원
+            </div>
           </div>
         </div>
       </ul>

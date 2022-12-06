@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import FilterBar from './components/FilterBar/FilterBar';
+import FilterBar from './components/FilterBar/FilterBar.jsx';
 import ListContent from './components/ListContent/ListContent';
 import ListHeader from './components/listHeader/ListHeader';
 import standardObject from './components/FilterBar/constantData/standardObject';
@@ -8,17 +8,17 @@ import standardObject from './components/FilterBar/constantData/standardObject';
 import './itemList.scss';
 
 function ItemList() {
-  const [products, setProducts] = useState([]);
-  const [sortStandard, setSortStandard] = useState('신상품순');
-  const [filterHider, setFilterHider] = useState(true);
-  const [checkList, setCheckList] = useState({});
-  const [selectedColor, setSelectedColor] = useState([]);
-  const [selectedSize, setSelectedSize] = useState([]);
-  const [offset, setOffset] = useState(0);
-  const [limit, setLimit] = useState(5);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [products, setProducts] = useState<object[]>([]);
+  const [sortStandard, setSortStandard] = useState<string>('신상품순');
+  const [filterHider, setFilterHider] = useState<boolean>(true);
+  const [checkList, setCheckList] = useState<CheckList>({});
+  const [selectedColor, setSelectedColor] = useState<string[]>([]);
+  const [selectedSize, setSelectedSize] = useState<string[]>([]);
+  const [offset, setOffset] = useState<number>(0);
+  const [limit, setLimit] = useState<number>(5);
+  const [, setSearchParams] = useSearchParams();
 
-  const itemListCount = useRef();
+  const itemListCount = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const sortStandardForSubmit = standardObject[sortStandard];
@@ -35,13 +35,14 @@ function ItemList() {
           (urlForSubmit = urlForSubmit + `${checkListName}=${checkedList}&`)
       );
     }
-
     setSearchParams(urlForSubmit);
-    fetch('http://172.20.10.4:8000/products?' + urlForSubmit)
+    fetch('http://192.168.243.200:8000/products?' + urlForSubmit)
       .then(response => response.json())
       .then(result => {
-        const inputItemCount =
-          result.list.length - itemListCount.current.children.length;
+        const { current } = itemListCount;
+        const inputItemCount = current
+          ? result.list.length - current.children.length
+          : 0;
 
         setProducts(prev => result.list);
       });
@@ -71,7 +72,6 @@ function ItemList() {
           products={products}
           setProducts={setProducts}
           filterHider={filterHider}
-          sortStandard={sortStandard}
           setOffset={setOffset}
           setLimit={setLimit}
           itemListCount={itemListCount}
