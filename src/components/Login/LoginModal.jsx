@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { LOGIN_CONFIG } from '../../config';
 import { Link } from 'react-router-dom';
+// import { LOGIN_CONFIG } from '../../config';
 import './LoginModal.scss';
 
 function Login({ closeTargetModal }) {
@@ -18,6 +18,8 @@ function Login({ closeTargetModal }) {
     }
   };
 
+  const handleCloseModal = () => closeTargetModal('login');
+
   const handleClickLogin = value => {
     try {
       validateLogin(value);
@@ -29,11 +31,7 @@ function Login({ closeTargetModal }) {
         },
         body: JSON.stringify(value),
       })
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
+        .then(response => (response.ok ? response.json() : ''))
         .then(data => {
           localStorage.setItem('token', data.accessToken);
           localStorage.setItem('fullName', data.fullName);
@@ -47,18 +45,25 @@ function Login({ closeTargetModal }) {
     }
   };
 
-  const handleCloseModal = () => closeTargetModal('login');
-
   return (
-    <div className="loginWrapper" onClick={handleCloseModal}>
+    <div
+      role="presentation"
+      className="loginWrapper"
+      onClick={handleCloseModal}
+    >
       <div
+        role="presentation"
         className="login"
         onClick={e => {
           e.stopPropagation();
         }}
       >
         <div>
-          <button className="loginModalDelete" onClick={handleCloseModal}>
+          <button
+            className="loginModalDelete"
+            type="button"
+            onClick={handleCloseModal}
+          >
             <i className="fa-solid fa-x" />
           </button>
           <p className="loginIcon">나이키</p>
@@ -80,23 +85,26 @@ function Login({ closeTargetModal }) {
             value={inputs.password}
           />
           <div className="loginHelp">
-            <button className="block">
+            <button className="block" type="submit">
               <input type="checkbox" className="checkBox" />
               로그인 유지하기
             </button>
-            <button className="block">아이디/비밀번호 찾기</button>
+            <button className="block" type="submit">
+              아이디/비밀번호 찾기
+            </button>
           </div>
           <button
             className="loginButton block"
+            type="submit"
             onClick={() => handleClickLogin(inputs)}
           >
             로그인
           </button>
-          <button className="loginKakao block">
+          <button className="loginKakao block" type="submit">
             <i className="fa-solid fa-message" />
             카카오계정 로그인
           </button>
-          <button className="loginFacebook block">
+          <button className="loginFacebook block" type="submit">
             <i className="fa-brands fa-facebook-f" />
             페이스북으로 로그인
           </button>

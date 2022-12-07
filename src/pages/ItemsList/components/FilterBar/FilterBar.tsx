@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FilterBarCheckList from './components/FilterBarCheckList/FilterBarCheckList';
 import FilterBarColor from './components/FilterBarColor/FilterBarColor';
 import FilterBarSize from './components/FilterBarSize/FilterBarSize';
 
 import FILTER_BAR_CHECKLIST from './components/FilterBarCheckList/constantData/filterBarItems';
 import './filterBar.scss';
+
+interface CheckList {
+  [key: string]: string[];
+}
+
+interface PropsTypes {
+  filterHider: boolean;
+  checkList: CheckList;
+  setCheckList: React.Dispatch<React.SetStateAction<CheckList>>;
+  selectedColor: string[];
+  setSelectedColor: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedSize: string[];
+  setSelectedSize: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
 function FilterBar({
   filterHider,
@@ -14,7 +28,7 @@ function FilterBar({
   setSelectedColor,
   selectedSize,
   setSelectedSize,
-}) {
+}: PropsTypes) {
   return (
     <div
       className="filterBar"
@@ -25,7 +39,7 @@ function FilterBar({
               transform: 'translateX(-110%)',
               overflow: 'hidden',
             }
-          : null
+          : {}
       }
     >
       <FilterBarSize
