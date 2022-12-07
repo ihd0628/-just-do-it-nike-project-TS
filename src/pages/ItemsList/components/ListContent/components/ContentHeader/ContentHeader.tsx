@@ -2,7 +2,7 @@ import React from 'react';
 import HEADER_ITEMS from './mockData/headerItems';
 import './contentHeader.scss';
 
-function ContentHeader(props) {
+function ContentHeader() {
   return (
     <div className="contentHeader">
       <div className="contentHeaderContainer">
