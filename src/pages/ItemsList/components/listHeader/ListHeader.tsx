@@ -3,7 +3,7 @@ import ModalForItemList from './components/Modal/ModalForItemList';
 import ModarlPortalForItemList from './components/Modal/PortalForItemList';
 import './listHeader.scss';
 
-interface propsTypes {
+interface PropsTypes {
   filterHider: boolean;
   setFilterHider: React.Dispatch<React.SetStateAction<boolean>>;
   sortStandard: string;
@@ -17,7 +17,7 @@ function ListHeader({
   sortStandard,
   setSortStandard,
   products,
-}: propsTypes) {
+}: PropsTypes) {
   const [sortSetter, setSortSetter] = useState<boolean>(false);
 
   const filterController = () => {
@@ -36,10 +36,14 @@ function ListHeader({
   return (
     <header className="listHeader">
       <div className="headerLeft">
-        Nike's Wecode Edition ({products.length})
+        Nike&rsquo;s Wecode Edition ({products.length})
       </div>
       <div className="headerRight">
-        <div className="headerFilter" onClick={filterController}>
+        <div
+          role="presentation"
+          className="headerFilter"
+          onClick={filterController}
+        >
           <div className="text">필터</div>
           <img
             src={`./image/itemList/filter${
@@ -49,7 +53,11 @@ function ListHeader({
           />
           {/* 3항연산자로 부르는 이미지만 왔다갔다하게해주기 위아래 전부 */}
         </div>
-        <div className="headerSetOrder" onClick={sortController}>
+        <div
+          role="presentation"
+          className="headerSetOrder"
+          onClick={sortController}
+        >
           <div className="text">{sortStandard}</div>
           <img
             src={`./image/itemList/${

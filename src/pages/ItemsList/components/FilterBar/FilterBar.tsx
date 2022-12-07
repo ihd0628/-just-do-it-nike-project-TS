@@ -7,7 +7,7 @@ import FILTER_BAR_CHECKLIST from './components/FilterBarCheckList/constantData/f
 import './filterBar.scss';
 
 interface CheckList {
-  [key: string]: string[];
+  [key: string]: number[];
 }
 
 interface PropsTypes {

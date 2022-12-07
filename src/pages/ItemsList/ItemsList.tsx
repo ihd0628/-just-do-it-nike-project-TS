@@ -7,7 +7,7 @@ import standardObject from './components/FilterBar/constantData/standardObject';
 
 import './itemList.scss';
 
-interface productTypes {
+interface ProductTypes {
   id: string;
   thumbnail: string;
   productName: string;
@@ -19,11 +19,11 @@ interface productTypes {
 }
 
 interface CheckList {
-  [key: string]: string[];
+  [key: string]: number[];
 }
 
 function ItemList() {
-  const [products, setProducts] = useState<Array<productTypes>>([]);
+  const [products, setProducts] = useState<Array<ProductTypes>>([]);
   const [sortStandard, setSortStandard] = useState<string>('신상품순');
   const [filterHider, setFilterHider] = useState<boolean>(true);
   const [checkList, setCheckList] = useState<CheckList>({});
@@ -39,27 +39,34 @@ function ItemList() {
     const sortStandardForSubmit = standardObject[sortStandard];
     let urlForSubmit = `offset=${offset}&limit=${limit}&sort=${sortStandardForSubmit}&`;
 
-    selectedSize.map(size => (urlForSubmit = urlForSubmit + `size=${size}&`));
-    selectedColor.map(
-      color => (urlForSubmit = urlForSubmit + `color=${color}&`)
-    );
-    for (const checkListName in checkList) {
-      checkList[checkListName].map(
-        // eslint-disable-next-line no-loop-func
-        checkedList =>
-          (urlForSubmit = urlForSubmit + `${checkListName}=${checkedList}&`)
-      );
-    }
+    selectedSize.forEach(size => {
+      urlForSubmit += `size=${size}&`;
+    });
+    selectedColor.forEach(color => {
+      urlForSubmit += `color=${color}&`;
+    });
+    const checkListNames = Object.keys(checkList);
+    checkListNames.forEach(checkListName => {
+      checkList[checkListName].forEach(checkedList => {
+        urlForSubmit += `${checkListName}=${checkedList}&`;
+      });
+    });
+    // for (const checkListName in checkList) {
+    //   checkList[checkListName].map(
+    //     // eslint-disable-next-line no-loop-func
+    //     checkedList => (urlForSubmit += `${checkListName}=${checkedList}&`)
+    //   );
+    // }
     setSearchParams(urlForSubmit);
-    fetch('http://192.168.243.200:8000/products?' + urlForSubmit)
+    fetch(`http://192.168.243.200:8000/products?${urlForSubmit}`)
       .then(response => response.json())
       .then(result => {
-        const { current } = itemListCount;
-        const inputItemCount = current
-          ? result.list.length - current.children.length
-          : 0;
+        // const { current } = itemListCount;
+        // const inputItemCount = current
+        //   ? result.list.length - current.children.length
+        //   : 0;
 
-        setProducts(prev => result.list);
+        setProducts(result.list);
       });
   }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
 
