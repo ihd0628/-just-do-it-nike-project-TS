@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import ModalForItemList from './components/Modal/ModalForItemList';
+import ModalForItemList from './components/Modal/ModalForItemList.jsx';
 import ModarlPortalForItemList from './components/Modal/PortalForItemList';
 import './listHeader.scss';
 
 interface propsTypes {
   filterHider: boolean;
-  setFilterHider: () => void;
+  setFilterHider: React.Dispatch<React.SetStateAction<boolean>>;
   sortStandard: string;
-  setSortStandard: () => void;
+  setSortStandard: React.Dispatch<React.SetStateAction<string>>;
   products: object[];
 }
 
@@ -18,17 +18,19 @@ function ListHeader({
   setSortStandard,
   products,
 }: propsTypes) {
-  const [sortSetter, setSortSetter] = useState(false);
+  const [sortSetter, setSortSetter] = useState<boolean>(false);
 
   const filterController = () => {
     setFilterHider(prev => !prev);
   };
 
-  const sortController = event => {
-    const newStandard = event.target.innerText;
+  const sortController = (event: React.MouseEvent<HTMLDivElement>) => {
+    const newStandard = event.target as HTMLElement;
+    const newStandardValue = newStandard.innerText;
     setSortSetter(prev => !prev);
 
-    if (event.target.className === 'sortStandard') setSortStandard(newStandard);
+    if (newStandard.className === 'sortStandard')
+      setSortStandard(newStandardValue);
   };
 
   return (
