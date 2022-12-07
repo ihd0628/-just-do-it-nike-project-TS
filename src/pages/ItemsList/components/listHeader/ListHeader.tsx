@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ModalForItemList from './components/Modal/ModalForItemList.jsx';
+import ModalForItemList from './components/Modal/ModalForItemList';
 import ModarlPortalForItemList from './components/Modal/PortalForItemList';
 import './listHeader.scss';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './ModalForItemList.scss';
 
-function ModalForItemList(props) {
+function ModalForItemList() {
   return (
     <div className="modalForItemList">
       <div className="modalContent">
