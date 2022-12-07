@@ -4,7 +4,23 @@ import './contentList.scss';
 import AdvertiseItem from './components/AdvertiseItem/AdvertiseItem';
 import ContentItem from './components/ContentItem/ContentItem';
 
-function ContentList({ products, itemListCount }) {
+interface productTypes {
+  id: string;
+  thumbnail: string;
+  productName: string;
+  description: string;
+  brandName: string;
+  color: string;
+  discountPrice: number;
+  retailPrice: number;
+}
+
+interface propsTypes {
+  products: Array<productTypes>;
+  itemListCount: React.RefObject<HTMLDivElement>;
+}
+
+function ContentList({ products, itemListCount }: propsTypes) {
   return (
     <div className="contentItems">
       <div className="contentItemContainor" ref={itemListCount}>
@@ -22,7 +38,7 @@ function ContentList({ products, itemListCount }) {
                 color,
                 discountPrice,
                 retailPrice,
-              }) => {
+              }: productTypes) => {
                 return (
                   <ContentItem
                     key={id}

@@ -7,12 +7,23 @@ import standardObject from './components/FilterBar/constantData/standardObject';
 
 import './itemList.scss';
 
+interface productTypes {
+  id: string;
+  thumbnail: string;
+  productName: string;
+  description: string;
+  brandName: string;
+  color: string;
+  discountPrice: number;
+  retailPrice: number;
+}
+
 interface CheckList {
   [key: string]: string[];
 }
 
 function ItemList() {
-  const [products, setProducts] = useState<object[]>([]);
+  const [products, setProducts] = useState<Array<productTypes>>([]);
   const [sortStandard, setSortStandard] = useState<string>('신상품순');
   const [filterHider, setFilterHider] = useState<boolean>(true);
   const [checkList, setCheckList] = useState<CheckList>({});
@@ -74,7 +85,6 @@ function ItemList() {
 
         <ListContent
           products={products}
-          setProducts={setProducts}
           filterHider={filterHider}
           setOffset={setOffset}
           setLimit={setLimit}

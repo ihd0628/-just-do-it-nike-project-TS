@@ -4,9 +4,18 @@ import ContentNext from './components/ContentNext/ContentNext';
 import ContentList from './components/ContentList/ContentList';
 import './listContent.scss';
 
+interface productTypes {
+  id: string;
+  thumbnail: string;
+  productName: string;
+  description: string;
+  brandName: string;
+  color: string;
+  discountPrice: number;
+  retailPrice: number;
+}
 interface propsTypes {
-  products: object[];
-  setProducts: React.Dispatch<React.SetStateAction<object[]>>;
+  products: Array<productTypes>;
   filterHider: boolean;
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
@@ -15,7 +24,6 @@ interface propsTypes {
 
 function ListContent({
   products,
-  setProducts,
   filterHider,
   setOffset,
   setLimit,
