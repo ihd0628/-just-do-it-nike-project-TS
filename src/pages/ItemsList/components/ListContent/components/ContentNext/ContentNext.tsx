@@ -1,7 +1,13 @@
 import React, { useRef, useState } from 'react';
 import './contentNext.scss';
 
-function ContentNext({ products, setOffset, setLimit }) {
+interface propsTypes {
+  products: object[];
+  setOffset: React.Dispatch<React.SetStateAction<number>>;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
+}
+
+function ContentNext({ products, setOffset, setLimit }: propsTypes) {
   const offset = products.length !== undefined ? products.length : 0;
   const nextItemGetter = () => {
     setOffset(0);
