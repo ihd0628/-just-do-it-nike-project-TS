@@ -10,7 +10,7 @@ import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
 
 interface ProductOption {
-  size: number;
+  size: string;
   stock: number;
   productOptionId: string;
 }

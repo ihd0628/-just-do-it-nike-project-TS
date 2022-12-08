@@ -3,7 +3,7 @@ import SizeButton from './components/SizeButton';
 import './ShoesSize.scss';
 
 interface ProductOption {
-  size: number;
+  size: string;
   stock: number;
   productOptionId: string;
 }
