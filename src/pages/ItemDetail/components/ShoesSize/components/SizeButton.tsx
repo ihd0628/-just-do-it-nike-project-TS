@@ -14,9 +14,10 @@ interface ThumbailInfo {
 
 interface ReviewInfo {
   id: number;
-  starScore: string;
+  starScore: number;
   fullName: string;
   createdAt: string;
+  content: string;
 }
 
 interface Product {
