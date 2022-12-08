@@ -1,4 +1,11 @@
-const FILTER_BAR_CHECKLIST = [
+interface CheckList {
+  category: string;
+  categoryCode: string;
+  listArr: Array<string>;
+}
+type FilterBarCheckList = Array<CheckList>;
+
+const FILTER_BAR_CHECKLIST: FilterBarCheckList = [
   {
     category: '브랜드',
     categoryCode: 'brand',
