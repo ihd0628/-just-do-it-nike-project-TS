@@ -4,7 +4,7 @@
 
 - [x] ItemList 컴포넌트
 - [x] ItemDetail 컴포넌트
-- [] Main 컴포넌트
+- [x] Main 컴포넌트
 - [] SignUp 컴포넌트
 - [] WishList 컴포넌트
 
