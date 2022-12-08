@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ItemDetail.scss';
+import { useParams } from 'react-router-dom';
 import ShoesSize from './components/ShoesSize/ShoesSize';
 import DetailImgs from './components/DetailImgs/DetailImgs';
 import Counter from './components/Counter/Counter';
@@ -7,12 +8,11 @@ import Modal from './components/Modal/Modal';
 import ShoesColor from './components/ShoesColor/ShoesColor';
 import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
-import { useParams } from 'react-router-dom';
 
 function ItemDetail() {
   const [modal, setModal] = useState(false);
   const [product, setProduct] = useState({});
-  const [result, setResult] = useState([]);
+  // const [result, setResult] = useState([]);
   const [shooseSize, setShooseSize] = useState('');
   const [shoesModal, setShoesModal] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -20,12 +20,14 @@ function ItemDetail() {
   const [productOptionId, setProductOptionId] = useState();
   const [isWished, setIsWished] = useState(product.isWished);
 
-  const iswished = product.isWished;
+  // const iswished = product.isWished;
   const token = localStorage.getItem('token');
-  const [accessToken, setAccessToken] = useState(token);
+  const [accessToken] = useState(token);
+  const params = useParams();
+  const { productId } = params;
 
   const [selectedId, setSelectedId] = useState('');
-  const { stock } = product;
+  // const { stock } = product;
   useEffect(() => {
     fetch(`http://192.168.243.200:8000/product/${productId}`, {
       method: 'GET',
@@ -36,17 +38,10 @@ function ItemDetail() {
       .then(res => res.json())
       .then(data => {
         setIsWished(data.isWished);
-        console.log(data);
         setProduct(data);
       });
     // .then(result => console.log(result));
   }, []);
-
-  const params = useParams();
-  const { productId } = params;
-
-  console.log('quantity : ', quantity);
-  console.log('productOptionId : ', productOptionId);
 
   const orderSubmit = () => {
     fetch(`http://192.168.243.200:8000/orders`, {
@@ -56,8 +51,8 @@ function ItemDetail() {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        productOptionId: productOptionId,
-        quantity: quantity,
+        productOptionId,
+        quantity,
       }),
     })
       .then(response => response.json())
@@ -67,7 +62,7 @@ function ItemDetail() {
   const openModal = () => {
     if (accessToken === null) {
       alert('로그인하세요');
-    } else if (selectedId == '') {
+    } else if (selectedId === '') {
       alert('size를 선택하세요');
     } else {
       setModal(prev => !prev);
@@ -81,7 +76,7 @@ function ItemDetail() {
         },
         body: JSON.stringify({
           productOptionId: selectedId,
-          quantity: quantity,
+          quantity,
         }),
       }).then(response => response.json());
     }
@@ -108,7 +103,7 @@ function ItemDetail() {
   const onIncrease = () => {
     let selectdSizesStock = 0;
 
-    product.productOptions.map(item => {
+    product.productOptions.forEach(item => {
       if (Number(item.size) === Number(shooseSize)) {
         selectdSizesStock = item.stock;
         setProductOptionId(item.productOptionId);
@@ -125,7 +120,7 @@ function ItemDetail() {
     setquantity(prevquantity => prevquantity - 1);
   };
 
-  const wishSubmit = event => {
+  const wishSubmit = () => {
     fetch(`http://192.168.243.200:8000/wishlist`, {
       method: 'POST',
       headers: {
@@ -133,14 +128,14 @@ function ItemDetail() {
         authorization: accessToken,
       },
       body: JSON.stringify({
-        productId: productId,
+        productId,
       }),
     })
       .then(response => response.json())
       .then(result => {
-        result.message === 'ALREADY_EXIST'
-          ? alert('이미 wishList에 있는 항목입니다.')
-          : setIsWished(true);
+        if (result.message === 'ALREADY_EXIST') {
+          alert('이미 wishList에 있는 항목입니다.');
+        } else setIsWished(true);
       });
   };
 
@@ -198,8 +193,8 @@ function ItemDetail() {
               <div className="sizetype">
                 <div className="sizeSelect">사이즈 선택</div>
                 <div className="sizeGuide">
-                  <a>
-                    <button>사이즈 가이드</button>
+                  <a href="#!">
+                    <button type="button">사이즈 가이드</button>
                   </a>
                 </div>
               </div>
@@ -213,7 +208,9 @@ function ItemDetail() {
               />
             </div>
             <p>
-              <button className="itemNotify">NOTIFY ME 입고 알림 신청</button>
+              <button type="button" className="itemNotify">
+                NOTIFY ME 입고 알림 신청
+              </button>
             </p>
             <div className="itemCount">
               <span>수량</span>
@@ -227,15 +224,19 @@ function ItemDetail() {
               </span>
             </div>
             <div className="itemPurchaseWrap">
-              <button className="itemPurchase" onClick={orderSubmit}>
+              <button
+                type="button"
+                className="itemPurchase"
+                onClick={orderSubmit}
+              >
                 바로구매
               </button>
               <div className="itemBasketWish">
-                <button onClick={openModal} className="btn-modal">
+                <button type="button" onClick={openModal} className="btn-modal">
                   장바구니
                 </button>
 
-                <button className="itemWish" onClick={wishSubmit}>
+                <button type="button" className="itemWish" onClick={wishSubmit}>
                   <div className="text">위시리스트</div>
                   {accessToken && (
                     <div className="heart">
@@ -250,7 +251,9 @@ function ItemDetail() {
                 매장 픽업 서비스가 한시적으로 중단됩니다.
               </div>
               <div>
-                <button className="focus">자세히 보기</button>
+                <button type="button" className="focus">
+                  자세히 보기
+                </button>
               </div>
             </div>
             <div className="shoesInfo">
@@ -260,7 +263,9 @@ function ItemDetail() {
                 <div>스타일 : {product.styleCode}</div>
               </div>
               <div>
-                <button className="shoesMoreInfo">더 보기</button>
+                <button type="button" className="shoesMoreInfo">
+                  더 보기
+                </button>
               </div>
             </div>
             <div className="itemSide">
@@ -270,7 +275,7 @@ function ItemDetail() {
             <div className="itemSideReview">
               <div className="review">
                 리뷰
-                <button onClick={openReview}>
+                <button type="button" onClick={openReview}>
                   <img src="/image/open.png" alt="open" className="open" />
                 </button>
               </div>

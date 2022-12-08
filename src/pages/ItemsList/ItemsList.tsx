@@ -51,12 +51,7 @@ function ItemList() {
         urlForSubmit += `${checkListName}=${checkedList}&`;
       });
     });
-    // for (const checkListName in checkList) {
-    //   checkList[checkListName].map(
-    //     // eslint-disable-next-line no-loop-func
-    //     checkedList => (urlForSubmit += `${checkListName}=${checkedList}&`)
-    //   );
-    // }
+
     setSearchParams(urlForSubmit);
     fetch(`http://192.168.243.200:8000/products?${urlForSubmit}`)
       .then(response => response.json())
