@@ -18,7 +18,7 @@ interface ProductOption {
 interface Product {
   isWished: boolean;
   productOptions: Array<ProductOption>;
-  imageURL: string;
+  imageURL: Array<string>;
   discountPrice: string;
   retailPrice: string;
   brandName: string;
@@ -33,7 +33,7 @@ interface Product {
 const productSample: Product = {
   isWished: false,
   productOptions: [],
-  imageURL: 'string',
+  imageURL: [''],
   discountPrice: 'string',
   retailPrice: 'string',
   brandName: 'string',

@@ -5,7 +5,7 @@ import ShoesImgs from '../ShoesImgs/ShoesImgs';
 interface PropsTypes {
   closeShoesModal: () => void;
   shoesModal: boolean;
-  imageUrl: string;
+  imageUrl: Array<string>;
 }
 
 function ShoesModal({ closeShoesModal, shoesModal, imageUrl }: PropsTypes) {

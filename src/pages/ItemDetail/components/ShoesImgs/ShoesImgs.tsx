@@ -1,6 +1,11 @@
 import React from 'react';
 import './ShoesImgs.scss';
-function ShoesImgs({ imageUrl }) {
+
+interface PropsTypes {
+  imageUrl: Array<string>;
+}
+
+function ShoesImgs({ imageUrl }: PropsTypes) {
   return (
     <ul className="shoesImgs">
       {imageUrl?.map(e => (

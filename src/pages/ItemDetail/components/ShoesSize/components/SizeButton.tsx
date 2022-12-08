@@ -10,7 +10,6 @@ interface ProductOption {
 interface Product {
   isWished: boolean;
   productOptions: Array<ProductOption>;
-  imageURL: string;
   discountPrice: string;
   retailPrice: string;
   brandName: string;
