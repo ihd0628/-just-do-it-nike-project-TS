@@ -30,9 +30,24 @@ interface Product {
   description: string;
 }
 
+const productSample: Product = {
+  isWished: false,
+  productOptions: [],
+  imageURL: 'string',
+  discountPrice: 'string',
+  retailPrice: 'string',
+  brandName: 'string',
+  color: 'string',
+  styleCode: 'string',
+  review: 'string',
+  productName: 'string',
+  getThumbnail: 'string',
+  description: 'string',
+};
+
 function ItemDetail() {
   const [modal, setModal] = useState(false);
-  const [product, setProduct] = useState<Product>();
+  const [product, setProduct] = useState<Product>(productSample);
   // const [result, setResult] = useState([]);
   const [shooseSize, setShooseSize] = useState('');
   const [shoesModal, setShoesModal] = useState(false);
@@ -225,7 +240,7 @@ function ItemDetail() {
                 </div>
               </div>
               <ShoesSize
-                footSize={product?.productOptions}
+                footSize={product?.productOptions || []}
                 setShooseSize={setShooseSize}
                 setSelectedId={setSelectedId}
                 setProductOptionId={setProductOptionId}

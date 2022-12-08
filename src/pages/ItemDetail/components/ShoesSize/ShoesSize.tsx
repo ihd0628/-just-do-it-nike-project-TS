@@ -2,13 +2,42 @@ import React from 'react';
 import SizeButton from './components/SizeButton';
 import './ShoesSize.scss';
 
+interface ProductOption {
+  size: number;
+  stock: number;
+  productOptionId: string;
+}
+
+interface Product {
+  isWished: boolean;
+  productOptions: Array<ProductOption>;
+  imageURL: string;
+  discountPrice: string;
+  retailPrice: string;
+  brandName: string;
+  color: string;
+  styleCode: string;
+  review: string;
+  productName: string;
+  getThumbnail: string;
+  description: string;
+}
+
+interface PropsTypes {
+  footSize: Array<ProductOption>;
+  setShooseSize: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedId: React.Dispatch<React.SetStateAction<string>>;
+  setProductOptionId: React.Dispatch<React.SetStateAction<string>>;
+  product: Product;
+}
+
 function ShoesSize({
   footSize,
   setShooseSize,
   setSelectedId,
   setProductOptionId,
   product,
-}) {
+}: PropsTypes) {
   return (
     <div className="shoesSize">
       <ul className="shoesSizeWrap">
