@@ -1,16 +1,31 @@
 import React, { useState } from 'react';
 import './color.scss';
 
-function Color({ name, code, colorNumber, selectedColor, setSelectedColor }) {
+interface PropsTypes {
+  name: string;
+  code: string;
+  colorNumber: string;
+  selectedColor: string[];
+  setSelectedColor: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+function Color({
+  name,
+  code,
+  colorNumber,
+  selectedColor,
+  setSelectedColor,
+}: PropsTypes) {
   const [colorCheck, setColorCheck] = useState(false);
 
-  const colorSelector = event => {
-    const color = event.target.title;
+  const colorSelector = (event: React.MouseEvent<HTMLDivElement>) => {
+    const eventElement = event.target as HTMLDivElement;
+    const color = eventElement.title;
     let colorArr = [...selectedColor];
 
-    colorArr.indexOf(color) === -1
-      ? colorArr.push(color)
-      : (colorArr = colorArr.filter(element => element !== color));
+    if (colorArr.indexOf(color) === -1) colorArr.push(color);
+    if (colorArr.indexOf(color) !== -1)
+      colorArr = colorArr.filter(element => element !== color);
 
     setColorCheck(prev => !prev);
     setSelectedColor(colorArr);
@@ -19,6 +34,7 @@ function Color({ name, code, colorNumber, selectedColor, setSelectedColor }) {
   return (
     <div className="color">
       <div
+        role="presentation"
         className="colorCircle"
         style={{ backgroundColor: `${code}` }}
         title={colorNumber}
