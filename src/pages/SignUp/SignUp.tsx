@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SIGN_UP_CONFIG } from '../../config';
-import { SIGN_UP_INPUT_DATA } from './SIGN_UP_DATA';
+// import { SIGN_UP_CONFIG } from '../../config';
+import SIGN_UP_INPUT_DATA from './SIGN_UP_DATA';
 import './SignUp.scss';
 
+interface Inputs {
+  userName: string;
+  password: string;
+  passwordForCheck: string;
+  address: string;
+  fullName: string;
+  phoneNumber: string;
+  birth: string;
+  gender: string;
+}
+
 function SignUp() {
-  const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useState<Inputs>({
     userName: '',
     password: '',
     passwordForCheck: '',
@@ -18,18 +29,22 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const handleChangeRadio = ({ target: { value } }) =>
-    setInputs(prev => ({ ...prev, gender: value }));
+  const handleChangeRadio = (event: React.ChangeEvent) => {
+    const targetElemet = event.target as HTMLInputElement;
+    setInputs(prev => ({ ...prev, gender: targetElemet.value }));
+  };
 
-  const handleChangeInputs = ({ target: { name, value } }) =>
-    setInputs({ ...inputs, [name]: value });
+  const handleChangeInputs = (event: React.ChangeEvent) => {
+    const targetElemet = event.target as HTMLInputElement;
+    setInputs({ ...inputs, [targetElemet.name]: targetElemet.value });
+  };
 
-  const isAllowedAge = birth => {
+  const isAllowedAge = (birth: string) => {
     const today = new Date();
     const todayTime = today.getTime();
     const birthTime = new Date(birth);
     const ageReg = Math.floor(
-      (todayTime - birthTime) / (1000 * 60 * 60 * 24 * 365)
+      (todayTime - Number(birthTime)) / (1000 * 60 * 60 * 24 * 365)
     );
 
     const minAllowedAge = 15;
@@ -43,7 +58,7 @@ function SignUp() {
     phoneNumber,
     birth,
     gender,
-  }) => {
+  }: Inputs) => {
     const idReg = /^[a-zA-Z0-9_-]{6,99}$/;
     const pwReg = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,16})/;
     const birthReg =
@@ -83,9 +98,9 @@ function SignUp() {
     }
   };
 
-  const handleSignUp = value => {
+  const handleSignUp = (value: {}) => {
     try {
-      validateSignUp(value);
+      validateSignUp(value as Inputs);
 
       fetch('http://192.168.243.200:8000/users/signup', {
         method: 'POST',
@@ -102,7 +117,7 @@ function SignUp() {
         })
         .catch(e => console.error(e));
     } catch (e) {
-      alert(e.message);
+      alert((e as any).message);
     }
   };
 
@@ -115,11 +130,11 @@ function SignUp() {
         최고의 제품과 혜택을 만나보세요.
       </p>
       <div id="signUpContainer">
-        {SIGN_UP_INPUT_DATA.map((item, idx) => (
+        {SIGN_UP_INPUT_DATA.map(item => (
           <input
-            key={idx}
+            key={item.placeholder}
             {...item}
-            value={inputs[item.name]}
+            value={(inputs as any)[item.name]}
             onChange={handleChangeInputs}
           />
         ))}
@@ -154,7 +169,11 @@ function SignUp() {
             여성
           </label>
         </div>
-        <button className="signUpButton" onClick={() => handleSignUp(inputs)}>
+        <button
+          type="button"
+          className="signUpButton"
+          onClick={() => handleSignUp(inputs)}
+        >
           회원가입하기 (만 14세 이상)
         </button>
       </div>

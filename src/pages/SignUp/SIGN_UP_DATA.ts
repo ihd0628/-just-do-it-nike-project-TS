@@ -1,4 +1,4 @@
-export const SIGN_UP_INPUT_DATA = [
+const SIGN_UP_INPUT_DATA = [
   {
     className: 'signUpInput',
     name: 'userName',
@@ -42,3 +42,5 @@ export const SIGN_UP_INPUT_DATA = [
     placeholder: '생년월일 예)2020-02-02',
   },
 ];
+
+export default SIGN_UP_INPUT_DATA;
