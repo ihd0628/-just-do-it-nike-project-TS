@@ -13,7 +13,7 @@ function WishList() {
     fetch('http://192.168.243.200:8000/wishlist', {
       method: 'GET',
       headers: {
-        authorization: token,
+        authorization: token || '',
       },
     })
       .then(response => response.json())
