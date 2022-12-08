@@ -1,6 +1,17 @@
 import React from 'react';
 import './ModalContentBox.scss';
 
+interface PropsTypes {
+  cartId: number;
+  product: string;
+  getThumbnail: string;
+  shooseSize: string;
+  quantity: number;
+  retailPrice: string;
+  styleCode: string;
+  discountPrice: string;
+}
+
 function ModalContentBox({
   cartId,
   product,
@@ -10,15 +21,15 @@ function ModalContentBox({
   retailPrice,
   styleCode,
   discountPrice,
-}) {
-  const deleteShoesItem = event => {
+}: PropsTypes) {
+  const deleteShoesItem = (event: any) => {
     const eventElement = event.nativeEvent.path[5];
     eventElement.innerHTML = '';
     // const deleteCartId = event.target.title;
     fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
       method: 'DELETE',
       headers: {
-        authorization: localStorage.getItem('token'),
+        authorization: localStorage.getItem('token') || '',
       },
     })
       .then(response => response.json())
@@ -40,7 +51,7 @@ function ModalContentBox({
                 src="/image/x.png"
                 className="modalDelete"
                 alt="삭제"
-                title={cartId}
+                title={String(cartId)}
                 onClick={deleteShoesItem}
               />
             </button>
