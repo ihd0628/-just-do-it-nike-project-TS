@@ -1,4 +1,4 @@
-export const MAIN_FOOTER_IMG_DATA = [
+export default [
   {
     id: 1,
     thumbnail:

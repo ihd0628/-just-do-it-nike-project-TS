@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import { MAIN_FOOTER_IMG_DATA } from './MAIN_DATA';
+// import  MAIN_FOOTER_IMG_DATA  from './MAIN_DATA';
 import { Link } from 'react-router-dom';
-import { MAIN_CONFIG } from '../../config';
+// import { MAIN_CONFIG } from '../../config';
 import './Main.scss';
 
 function Main() {
@@ -19,7 +19,7 @@ function Main() {
     <div className="main">
       <div className="video">
         <video muted autoPlay loop width="80%">
-          <source src="/videos/nikeRun33.mp4" type="video/mp4" alt="Nike Run" />
+          <source src="/videos/nikeRun33.mp4" type="video/mp4" />
         </video>
       </div>
       <div className="videoTextContainer">
