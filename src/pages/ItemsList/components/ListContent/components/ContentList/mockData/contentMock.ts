@@ -1,4 +1,18 @@
-const CONTENTS_MOCK = [
+interface Content {
+  id: number;
+  styleCode: string;
+  thumbnail: string;
+  productName: string;
+  description: string;
+  brandName: string;
+  color: string;
+  discountPrice: number;
+  retailPrice: number;
+  releaseDate: string;
+}
+type ContentsMock = Array<Content>;
+
+const CONTENTS_MOCK: ContentsMock = [
   {
     id: 1,
     styleCode: 'a',
