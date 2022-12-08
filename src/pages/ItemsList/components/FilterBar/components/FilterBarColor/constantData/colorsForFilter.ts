@@ -1,4 +1,11 @@
-const COLORS = [
+interface ColorInfo {
+  name: string;
+  code: string;
+  colorNumber: string;
+}
+type Colors = Array<ColorInfo>;
+
+const COLORS: Colors = [
   { name: '베이지', code: '#eee58b', colorNumber: '1' },
   { name: '검정색', code: '#000000', colorNumber: '2' },
   { name: '파랑색', code: '#3686d5', colorNumber: '3' },
