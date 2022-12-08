@@ -3,12 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import './Modal.scss';
 import ModalContentBox from './ModalContentBox/ModalContentBox';
-function Modal({
-  closeModal,
-  modal,
 
-  quantity,
-}) {
+function Modal({ closeModal }) {
   let totalPrice = 0;
   const navigate = useNavigate();
 
@@ -45,7 +41,7 @@ function Modal({
             <h2 className="modalSmallBasket">미니 장바구니</h2>
             <div className="modalMap">
               {result.map(cartItem => {
-                key = key + 1;
+                key += 1;
                 return (
                   <ModalContentBox
                     cartId={cartItem.cartId}

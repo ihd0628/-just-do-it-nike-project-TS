@@ -9,16 +9,37 @@ import ShoesColor from './components/ShoesColor/ShoesColor';
 import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
 
+interface ProductOption {
+  size: number;
+  stock: number;
+  productOptionId: string;
+}
+
+interface Product {
+  isWished: boolean;
+  productOptions: Array<ProductOption>;
+  imageURL: string;
+  discountPrice: string;
+  retailPrice: string;
+  brandName: string;
+  color: string;
+  styleCode: string;
+  review: string;
+  productName: string;
+  getThumbnail: string;
+  description: string;
+}
+
 function ItemDetail() {
   const [modal, setModal] = useState(false);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState<Product>();
   // const [result, setResult] = useState([]);
   const [shooseSize, setShooseSize] = useState('');
   const [shoesModal, setShoesModal] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
   const [quantity, setquantity] = useState(1);
-  const [productOptionId, setProductOptionId] = useState();
-  const [isWished, setIsWished] = useState(product.isWished);
+  const [productOptionId, setProductOptionId] = useState('');
+  const [isWished, setIsWished] = useState({});
 
   // const iswished = product.isWished;
   const token = localStorage.getItem('token');
@@ -32,7 +53,7 @@ function ItemDetail() {
     fetch(`http://192.168.243.200:8000/product/${productId}`, {
       method: 'GET',
       headers: {
-        authorization: localStorage.getItem('token'),
+        authorization: localStorage?.getItem('token') || '',
       },
     })
       .then(res => res.json())
@@ -43,11 +64,16 @@ function ItemDetail() {
     // .then(result => console.log(result));
   }, []);
 
+  useEffect(() => {
+    const isWishedForSet = product?.isWished || '';
+    setIsWished(isWishedForSet);
+  });
+
   const orderSubmit = () => {
     fetch(`http://192.168.243.200:8000/orders`, {
       method: 'POST',
       headers: {
-        authorization: localStorage.getItem('token'),
+        authorization: localStorage?.getItem('token') || '',
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
@@ -103,7 +129,7 @@ function ItemDetail() {
   const onIncrease = () => {
     let selectdSizesStock = 0;
 
-    product.productOptions.forEach(item => {
+    product?.productOptions.forEach(item => {
       if (Number(item.size) === Number(shooseSize)) {
         selectdSizesStock = item.stock;
         setProductOptionId(item.productOptionId);
@@ -125,7 +151,7 @@ function ItemDetail() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization: accessToken,
+        authorization: accessToken || '',
       },
       body: JSON.stringify({
         productId,
@@ -145,13 +171,13 @@ function ItemDetail() {
       <ShoesModal
         closeShoesModal={closeShoesModal}
         shoesModal={shoesModal}
-        imageUrl={product.imageURL}
+        imageUrl={product?.imageURL}
       />
 
       <article className="detailSection">
         <div className="detailContent">
           <DetailImgs
-            imageUrl={product.imageURL}
+            imageUrl={product?.imageURL}
             openShoesModal={openShoesModal}
           />
         </div>
@@ -160,33 +186,33 @@ function ItemDetail() {
           <div className="detailOption">
             <div
               className={`detailName ${
-                product.discountPrice === null ? 'price0' : ''
+                product?.discountPrice === null ? 'price0' : ''
               }`}
             >
               <div className="namePrice">
-                <div>{product.brandName}</div>
+                <div>{product?.brandName}</div>
                 <div className="discounted">
-                  {Number(product.retailPrice).toLocaleString()}원
+                  {Number(product?.retailPrice).toLocaleString()}원
                 </div>
               </div>
               <div>
                 <div className="discountPrice">
-                  {Number(product.discountPrice).toLocaleString()}원
+                  {Number(product?.discountPrice).toLocaleString()}원
                 </div>
               </div>
               <div className="discountPercent">
                 {Math.floor(
                   (1 -
-                    Number(product.discountPrice) /
-                      Number(product.retailPrice)) *
+                    Number(product?.discountPrice) /
+                      Number(product?.retailPrice)) *
                     100
                 )}
                 % off
               </div>
-              <div className="shoesName">{product.productName}</div>
+              <div className="shoesName">{product?.productName}</div>
             </div>
             <div>
-              <ShoesColor getThumbnail={product.getThumbnail} />
+              <ShoesColor getThumbnail={product?.getThumbnail} />
             </div>
 
             <div className="shoesSizes">
@@ -199,9 +225,8 @@ function ItemDetail() {
                 </div>
               </div>
               <ShoesSize
-                footSize={product.productOptions}
+                footSize={product?.productOptions}
                 setShooseSize={setShooseSize}
-                stock={product.productOptions}
                 setSelectedId={setSelectedId}
                 setProductOptionId={setProductOptionId}
                 product={product}
@@ -219,7 +244,7 @@ function ItemDetail() {
                   quantity={quantity}
                   onIncrease={onIncrease}
                   onDecrease={onDecrease}
-                  stock={product.productOptions}
+                  stock={product?.productOptions}
                 />
               </span>
             </div>
@@ -257,10 +282,10 @@ function ItemDetail() {
               </div>
             </div>
             <div className="shoesInfo">
-              <p className="shoesDescription">{product.description}</p>
+              <p className="shoesDescription">{product?.description}</p>
               <div className="shoesStyle">
-                <div>현재 컬러 : {product.color}</div>
-                <div>스타일 : {product.styleCode}</div>
+                <div>현재 컬러 : {product?.color}</div>
+                <div>스타일 : {product?.styleCode}</div>
               </div>
               <div>
                 <button type="button" className="shoesMoreInfo">
@@ -282,8 +307,8 @@ function ItemDetail() {
               <div className="reviewContents">
                 {reviewOpen && (
                   <Review
-                    review={product.review}
-                    styleCode={product.styleCode}
+                    review={product?.review}
+                    styleCode={product?.styleCode}
                   />
                 )}
               </div>
