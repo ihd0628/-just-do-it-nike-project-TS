@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Modal.scss';
 import ModalContentBox from './ModalContentBox/ModalContentBox';
 
 function Modal({ closeModal }) {
   let totalPrice = 0;
-  const navigate = useNavigate();
 
   const accessToken = localStorage.getItem('token');
   const [result, setResult] = useState([]);
@@ -22,7 +21,7 @@ function Modal({ closeModal }) {
     // .then(result => console.log('cart result : ', result));
   }, [result]);
 
-  for (let i = 0; i < result.length; i++) {
+  for (let i = 0; i < result.length; i += 1) {
     if (result[i].discountPrice) {
       totalPrice += result[i].discountPrice * result[i].quantity;
     } else {
@@ -34,7 +33,7 @@ function Modal({ closeModal }) {
   return (
     <div>
       <div className="modal">
-        <div onClick={closeModal} className="overlay" />
+        <div role="presentation" onClick={closeModal} className="overlay" />
 
         <div className="modalContent">
           <div className="modalWrapper">
@@ -69,10 +68,12 @@ function Modal({ closeModal }) {
                 배송비는 주문서에서 확인이 가능합니다.
               </div>
               <div className="modalBasketBuy">
-                <button className="modalBasket">
+                <button type="button" className="modalBasket">
                   <Link to="/cart">장바구니 가기</Link>
                 </button>
-                <button className="modalBuy">바로 구매</button>
+                <button type="button" className="modalBuy">
+                  바로 구매
+                </button>
               </div>
             </div>
           </div>
