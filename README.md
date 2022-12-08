@@ -3,7 +3,7 @@
 1. 타입스크립트 적용
 
 - [x] ItemList 컴포넌트
-- [] ItemDetail 컴포넌트
+- [x] ItemDetail 컴포넌트
 - [] Main 컴포넌트
 - [] SignUp 컴포넌트
 - [] WishList 컴포넌트
