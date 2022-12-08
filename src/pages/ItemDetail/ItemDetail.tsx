@@ -9,6 +9,10 @@ import ShoesColor from './components/ShoesColor/ShoesColor';
 import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
 
+interface ThumbailInfo {
+  id: string;
+  thumbnail: string;
+}
 interface ProductOption {
   size: string;
   stock: number;
@@ -26,7 +30,7 @@ interface Product {
   styleCode: string;
   review: string;
   productName: string;
-  getThumbnail: string;
+  getThumbnail: Array<ThumbailInfo>;
   description: string;
 }
 
@@ -41,7 +45,7 @@ const productSample: Product = {
   styleCode: 'string',
   review: 'string',
   productName: 'string',
-  getThumbnail: 'string',
+  getThumbnail: [],
   description: 'string',
 };
 

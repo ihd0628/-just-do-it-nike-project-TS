@@ -8,9 +8,15 @@ interface ProductOption {
   productOptionId: string;
 }
 
+interface ThumbailInfo {
+  id: string;
+  thumbnail: string;
+}
+
 interface Product {
   isWished: boolean;
   productOptions: Array<ProductOption>;
+  imageURL: Array<string>;
   discountPrice: string;
   retailPrice: string;
   brandName: string;
@@ -18,7 +24,7 @@ interface Product {
   styleCode: string;
   review: string;
   productName: string;
-  getThumbnail: string;
+  getThumbnail: Array<ThumbailInfo>;
   description: string;
 }
 
