@@ -12,8 +12,9 @@ function ModalContentBox({
   discountPrice,
 }) {
   const deleteShoesItem = event => {
-    event.nativeEvent.path[5].innerHTML = '';
-    const deleteCartId = event.target.title;
+    const eventElement = event.nativeEvent.path[5];
+    eventElement.innerHTML = '';
+    // const deleteCartId = event.target.title;
     fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
       method: 'DELETE',
       headers: {
@@ -33,8 +34,9 @@ function ModalContentBox({
         <div className="modalInfo">
           <div className="modal">
             <p className="productName">{product}</p>
-            <button>
+            <button type="button">
               <img
+                role="presentation"
                 src="/image/x.png"
                 className="modalDelete"
                 alt="삭제"
