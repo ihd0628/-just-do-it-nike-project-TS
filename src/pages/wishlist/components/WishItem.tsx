@@ -2,25 +2,34 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { WISH_DATA } from '../../../config';
 
-function WishItem({ productId, thumbnail, name, price }) {
+interface PropsTypes {
+  productId: string;
+  thumbnail: string;
+  name: string;
+  price: string;
+}
+
+function WishItem({ productId, thumbnail, name, price }: PropsTypes) {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const moveItemDetail = () => {
     navigate(`/item-detail/${productId}`, { state: { productId } });
   };
-  const handleDeleteCheck = async event => {
+  const handleDeleteCheck = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     try {
       if (window.confirm('삭제 하시겠습니까?')) {
         await fetch(`http://192.168.243.200:8000/wishlist/${productId}`, {
           method: 'DELETE',
           headers: {
-            authorization: token,
+            authorization: token || '',
           },
         })
           .then(response => response.json())
           .then(result => {
             if (result.message === 'delete complete') {
-              const eventElement = event.nativeEvent;
+              const eventElement = event.nativeEvent as any;
               eventElement.path[2].innerHTML = '';
             }
           });
