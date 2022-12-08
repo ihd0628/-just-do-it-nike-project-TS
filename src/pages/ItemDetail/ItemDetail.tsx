@@ -18,6 +18,13 @@ interface ProductOption {
   stock: number;
   productOptionId: string;
 }
+interface ReviewInfo {
+  id: number;
+  starScore: number;
+  fullName: string;
+  createdAt: string;
+  content: string;
+}
 
 interface Product {
   isWished: boolean;
@@ -28,7 +35,7 @@ interface Product {
   brandName: string;
   color: string;
   styleCode: string;
-  review: string;
+  review: Array<ReviewInfo>;
   productName: string;
   getThumbnail: Array<ThumbailInfo>;
   description: string;
@@ -43,7 +50,7 @@ const productSample: Product = {
   brandName: 'string',
   color: 'string',
   styleCode: 'string',
-  review: 'string',
+  review: [],
   productName: 'string',
   getThumbnail: [],
   description: 'string',

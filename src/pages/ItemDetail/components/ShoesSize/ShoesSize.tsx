@@ -13,6 +13,13 @@ interface ThumbailInfo {
   thumbnail: string;
 }
 
+interface ReviewInfo {
+  id: number;
+  starScore: string;
+  fullName: string;
+  createdAt: string;
+}
+
 interface Product {
   isWished: boolean;
   productOptions: Array<ProductOption>;
@@ -22,7 +29,7 @@ interface Product {
   brandName: string;
   color: string;
   styleCode: string;
-  review: string;
+  review: Array<ReviewInfo>;
   productName: string;
   getThumbnail: Array<ThumbailInfo>;
   description: string;

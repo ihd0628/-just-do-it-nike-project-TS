@@ -1,7 +1,20 @@
 import React from 'react';
 import './Review.scss';
 
-function Review({ review, styleCode }) {
+interface ReviewInfo {
+  id: number;
+  starScore: number;
+  fullName: string;
+  createdAt: string;
+  content: string;
+}
+
+interface PropsTypes {
+  review: Array<ReviewInfo>;
+  styleCode: string;
+}
+
+function Review({ review, styleCode }: PropsTypes) {
   return (
     <div>
       <div className="reviewRatioWrap">
@@ -44,8 +57,8 @@ function Review({ review, styleCode }) {
           <div>큰</div>
         </div>
       </div>
-      {review?.map((item, i) => (
-        <div key={i} className="reviewWrap">
+      {review?.map(item => (
+        <div key={item?.id} className="reviewWrap">
           <div>
             {'★'.repeat(item.starScore)}
             {'☆'.repeat(5 - item.starScore)}
