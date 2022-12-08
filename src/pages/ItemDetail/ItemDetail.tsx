@@ -288,7 +288,6 @@ function ItemDetail() {
                   quantity={quantity}
                   onIncrease={onIncrease}
                   onDecrease={onDecrease}
-                  stock={product?.productOptions}
                 />
               </span>
             </div>
