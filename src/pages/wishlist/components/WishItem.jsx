@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { WISH_DATA } from '../../../config';
 
-function WishItem({ productId, thumbnail, name, price, userId }) {
+function WishItem({ productId, thumbnail, name, price }) {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const moveItemDetail = () => {
-    navigate(`/item-detail/${productId}`, { state: { productId: productId } });
+    navigate(`/item-detail/${productId}`, { state: { productId } });
   };
   const handleDeleteCheck = async event => {
     try {
@@ -20,7 +20,8 @@ function WishItem({ productId, thumbnail, name, price, userId }) {
           .then(response => response.json())
           .then(result => {
             if (result.message === 'delete complete') {
-              event.nativeEvent.path[2].innerHTML = '';
+              const eventElement = event.nativeEvent;
+              eventElement.path[2].innerHTML = '';
             }
           });
       }
@@ -32,6 +33,7 @@ function WishItem({ productId, thumbnail, name, price, userId }) {
   return (
     <div key={productId} className="wishItem">
       <button
+        type="button"
         className="deleteButton"
         onClick={handleDeleteCheck}
         title={productId}
@@ -40,6 +42,7 @@ function WishItem({ productId, thumbnail, name, price, userId }) {
       </button>
       <div className="wishItemBox">
         <img
+          role="presentation"
           src={thumbnail}
           alt="위시리스트사진"
           className="wishImg"
@@ -47,7 +50,7 @@ function WishItem({ productId, thumbnail, name, price, userId }) {
         />
         <p className="wishName">{name}</p>
         <p className="wishPrice">{Number(price).toLocaleString()}원</p>
-        <p onClick={moveItemDetail} className="wishMove">
+        <p role="presentation" onClick={moveItemDetail} className="wishMove">
           상세페이지로 이동
         </p>
       </div>
