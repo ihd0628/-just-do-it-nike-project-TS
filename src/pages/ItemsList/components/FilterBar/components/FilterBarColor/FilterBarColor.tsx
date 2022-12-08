@@ -5,7 +5,12 @@ import COLORS from './constantData/colorsForFilter';
 
 import './filterBarColor.scss';
 
-function FilterBarColor({ selectedColor, setSelectedColor }) {
+interface PropsTypes {
+  selectedColor: string[];
+  setSelectedColor: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+function FilterBarColor({ selectedColor, setSelectedColor }: PropsTypes) {
   const [isHide, setIsHide] = useState(false);
 
   const hideController = () => {
@@ -18,6 +23,7 @@ function FilterBarColor({ selectedColor, setSelectedColor }) {
         <div className="colorText">색상</div>
         {isHide === false ? (
           <img
+            role="presentation"
             className="colorIcon"
             src="./image/itemList/upArrow.png"
             alt="숨기기"
@@ -25,6 +31,7 @@ function FilterBarColor({ selectedColor, setSelectedColor }) {
           />
         ) : (
           <img
+            role="presentation"
             className="colorIcon"
             src="./image/itemList/downArrow.png"
             alt="숨기기"
@@ -34,7 +41,7 @@ function FilterBarColor({ selectedColor, setSelectedColor }) {
       </div>
       <div
         className="colors"
-        style={isHide === false ? null : { display: 'none' }}
+        style={isHide === false ? {} : { display: 'none' }}
       >
         {COLORS.map(color => {
           return (
