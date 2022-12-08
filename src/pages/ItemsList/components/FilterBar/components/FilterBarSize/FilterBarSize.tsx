@@ -3,7 +3,12 @@ import SIZES from './constantData/sizes';
 import './filterBarSize.scss';
 import SizeButton from './SizeButton';
 
-function FilterBarSize({ selectedSize, setSelectedSize }) {
+interface PropsTypes {
+  selectedSize: string[];
+  setSelectedSize: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+function FilterBarSize({ selectedSize, setSelectedSize }: PropsTypes) {
   const [isHide, setIsHide] = useState(false);
 
   const hideController = () => {
@@ -16,6 +21,7 @@ function FilterBarSize({ selectedSize, setSelectedSize }) {
         <div className="sizeText">신발 사이즈</div>
         {isHide === false ? (
           <img
+            role="presentation"
             className="sizeIcon"
             src="./image/itemList/upArrow.png"
             alt="숨기기"
@@ -23,6 +29,7 @@ function FilterBarSize({ selectedSize, setSelectedSize }) {
           />
         ) : (
           <img
+            role="presentation"
             className="sizeIcon"
             src="./image/itemList/downArrow.png"
             alt="숨기기"
@@ -32,7 +39,7 @@ function FilterBarSize({ selectedSize, setSelectedSize }) {
       </div>
       <div
         className="sizeNumbers"
-        style={isHide === false ? null : { display: 'none' }}
+        style={isHide === false ? {} : { display: 'none' }}
       >
         {SIZES.map(size => {
           return (
