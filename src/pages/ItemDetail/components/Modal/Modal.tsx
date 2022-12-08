@@ -4,16 +4,63 @@ import { Link } from 'react-router-dom';
 import './Modal.scss';
 import ModalContentBox from './ModalContentBox/ModalContentBox';
 
-function Modal({ closeModal }) {
+interface PropsTypes {
+  closeModal: () => void;
+}
+
+interface ProductOption {
+  size: string;
+  stock: number;
+  productOptionId: string;
+}
+
+interface ThumbailInfo {
+  id: string;
+  thumbnail: string;
+}
+
+interface ReviewInfo {
+  id: number;
+  starScore: number;
+  fullName: string;
+  createdAt: string;
+  content: string;
+}
+
+interface Product {
+  isWished: boolean;
+  productOptions: Array<ProductOption>;
+  imageURL: Array<string>;
+  brandName: string;
+  color: string;
+  review: Array<ReviewInfo>;
+  getThumbnail: Array<ThumbailInfo>;
+  description: string;
+  cartId: number;
+  userId: number;
+  styleCode: string;
+  quantity: number;
+  productOptionId: number;
+  productId: number;
+  productName: string;
+  sizeId: number;
+  size: string;
+  stock: number;
+  retailPrice: string;
+  discountPrice: string;
+  thumbnail: string;
+}
+
+function Modal({ closeModal }: PropsTypes) {
   let totalPrice = 0;
 
   const accessToken = localStorage.getItem('token');
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState<Array<Product>>([]);
   useEffect(() => {
     fetch(`http://192.168.243.200:8000/carts`, {
       method: 'GET',
       headers: {
-        authorization: accessToken,
+        authorization: accessToken || '',
       },
     })
       .then(response => response.json())
@@ -23,9 +70,9 @@ function Modal({ closeModal }) {
 
   for (let i = 0; i < result.length; i += 1) {
     if (result[i].discountPrice) {
-      totalPrice += result[i].discountPrice * result[i].quantity;
+      totalPrice += Number(result[i].discountPrice) * result[i].quantity;
     } else {
-      totalPrice += result[i].retailPrice * result[i].quantity;
+      totalPrice += Number(result[i].retailPrice) * result[i].quantity;
     }
   }
   let key = 0;

@@ -30,15 +30,24 @@ interface Product {
   isWished: boolean;
   productOptions: Array<ProductOption>;
   imageURL: Array<string>;
-  discountPrice: string;
-  retailPrice: string;
   brandName: string;
   color: string;
-  styleCode: string;
   review: Array<ReviewInfo>;
-  productName: string;
   getThumbnail: Array<ThumbailInfo>;
   description: string;
+  cartId: number;
+  userId: number;
+  styleCode: string;
+  quantity: number;
+  productOptionId: number;
+  productId: number;
+  productName: string;
+  sizeId: number;
+  size: string;
+  stock: number;
+  retailPrice: string;
+  discountPrice: string;
+  thumbnail: string;
 }
 
 const productSample: Product = {
@@ -54,6 +63,15 @@ const productSample: Product = {
   productName: 'string',
   getThumbnail: [],
   description: 'string',
+  cartId: 0,
+  userId: 0,
+  quantity: 0,
+  productOptionId: 0,
+  productId: 0,
+  sizeId: 0,
+  size: 'string',
+  stock: 0,
+  thumbnail: 'string',
 };
 
 function ItemDetail() {
