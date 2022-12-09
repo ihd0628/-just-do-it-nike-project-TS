@@ -21,22 +21,42 @@ function ItemList() {
 
   const itemListCount = useRef<HTMLDivElement>(null);
 
+  const selectSizeGetterForUrl = (selectedSizeInput: Array<string>) => {
+    let selectSizeForUrl = '';
+    selectedSizeInput.forEach(size => {
+      selectSizeForUrl += `size=${size}&`;
+    });
+    return selectSizeForUrl;
+  };
+
+  const selectColorGetterForUrl = (selectedColorInput: Array<string>) => {
+    let selectColorForUrl = '';
+    selectedColorInput.forEach(color => {
+      selectColorForUrl += `color=${color}&`;
+    });
+    return selectColorForUrl;
+  };
+
+  const checkListGetterForUrl = (checkListInput: CheckList) => {
+    let checkListForUrl = '';
+    const checkListNames = Object.keys(checkListInput);
+    checkListNames.forEach(checkListName => {
+      checkListInput[checkListName].forEach(checkedList => {
+        checkListForUrl += `${checkListName}=${checkedList}&`;
+      });
+    });
+    return checkListForUrl;
+  };
+
   useEffect(() => {
     const sortStandardForSubmit = standardObject[sortStandard];
     let urlForSubmit = `offset=${offset}&limit=${limit}&sort=${sortStandardForSubmit}&`;
 
-    selectedSize.forEach(size => {
-      urlForSubmit += `size=${size}&`;
-    });
-    selectedColor.forEach(color => {
-      urlForSubmit += `color=${color}&`;
-    });
-    const checkListNames = Object.keys(checkList);
-    checkListNames.forEach(checkListName => {
-      checkList[checkListName].forEach(checkedList => {
-        urlForSubmit += `${checkListName}=${checkedList}&`;
-      });
-    });
+    urlForSubmit += selectSizeGetterForUrl(selectedSize);
+    urlForSubmit += selectColorGetterForUrl(selectedColor);
+    urlForSubmit += checkListGetterForUrl(checkList);
+
+    console.log('urlForSubmit : ', urlForSubmit);
 
     setSearchParams(urlForSubmit);
     fetch(`http://192.168.243.200:8000/products?${urlForSubmit}`)

@@ -22,10 +22,11 @@ function Color({
     const eventElement = event.target as HTMLDivElement;
     const color = eventElement.title;
     let colorArr = [...selectedColor];
-
-    if (colorArr.indexOf(color) === -1) colorArr.push(color);
-    if (colorArr.indexOf(color) !== -1)
+    if (colorArr.indexOf(color) === -1) {
+      colorArr.push(color);
+    } else {
       colorArr = colorArr.filter(element => element !== color);
+    }
 
     setColorCheck(prev => !prev);
     setSelectedColor(colorArr);
