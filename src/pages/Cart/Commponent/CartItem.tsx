@@ -3,6 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import OptModal from './OptModal';
 import './CartItem.scss';
 
+interface CartOpt {
+  brandId: number;
+  brandName: string;
+  images: Array<{ productId: number; imageUrl: string }>;
+  productOptions: Array<{
+    productOptionId: number;
+    size: string;
+    stock: number;
+  }>;
+}
+
+const cartOptSample = {
+  brandId: 2,
+  brandName: '나이키 스포츠웨어',
+  images: [],
+  productOptions: [],
+};
+
 interface CartItemTypes {
   cartId: number;
   userId: number;
@@ -28,7 +46,7 @@ function CartItem({ cartItemElement, setPageReloader }: PropsTypes) {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [optItemInfo, setOptItemInfo] = useState<Array<CartItemTypes>>([]);
-  const [cartOptItems, setCartOptItems] = useState('');
+  const [cartOptItems, setCartOptItems] = useState<CartOpt>(cartOptSample);
 
   const accessToken = localStorage.getItem('token');
 

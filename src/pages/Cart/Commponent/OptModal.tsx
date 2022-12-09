@@ -1,13 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import './OptModal.scss';
 
+interface CartOpt {
+  brandId: number;
+  brandName: string;
+  images: Array<{ productId: number; imageUrl: string }>;
+  productOptions: Array<{
+    productOptionId: number;
+    size: string;
+    stock: number;
+  }>;
+}
+
+interface CartItemTypes {
+  cartId: number;
+  userId: number;
+  styleCode: string;
+  quantity: number;
+  productOptionId: number;
+  productId: number;
+  productName: string;
+  sizeId: number;
+  size: string;
+  stock: number;
+  retailPrice: string;
+  discountPrice: string;
+  thumbnail: string;
+}
+
+interface PropsTypes {
+  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  optItemInfo: Array<CartItemTypes>;
+  cartOptItems: CartOpt;
+  cartDiscountRate: number;
+  setPageReloader: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 function OptModal({
   setIsOpenModal,
   optItemInfo,
   cartOptItems,
   cartDiscountRate,
   setPageReloader,
-}) {
+}: PropsTypes) {
   const { retailPrice, discountPrice, quantity, productName, size, cartId } =
     optItemInfo[0];
   const { productOptions } = cartOptItems;
@@ -40,7 +75,7 @@ function OptModal({
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('token'),
+        authorization: localStorage.getItem('token') || 'noToken',
       },
       body: JSON.stringify({
         productOptionId: selctedOptId,
@@ -69,13 +104,15 @@ function OptModal({
     setplusDisabled(optCount >= 10);
   }, [optCount]);
 
-  const changedSize = e => {
-    setSeletedSize(e.target.title);
+  const changedSize = (event: React.MouseEvent) => {
+    const eventTarget = event.target as HTMLButtonElement;
+    setSeletedSize(eventTarget.title);
   };
 
-  const handleOptInputCount = e => {
-    e.preventDefault();
-    const toNum = Number(e.target.value);
+  const handleOptInputCount = (event: React.ChangeEvent) => {
+    event.preventDefault();
+    const eventTarget = event.target as HTMLInputElement;
+    const toNum = Number(eventTarget.value);
     if (Number.isNaN(toNum)) return;
     setOptCount(toNum);
   };
@@ -90,7 +127,7 @@ function OptModal({
                 key={image.imageUrl}
                 className="optImg"
                 alt="신발"
-                src={image}
+                src={image.imageUrl}
               />
             );
           })}
