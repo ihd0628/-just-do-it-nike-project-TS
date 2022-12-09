@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import OptModal from './OptModal';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import OptModal from './OptModal';
 import './CartItem.scss';
 
 function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
@@ -22,6 +22,11 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
     retailPrice,
     styleCode,
   } = cartItems;
+
+  const getSeletedCartId = id => {
+    const optInfo = [cartItems].filter(cartItem => cartItem.cartId === id);
+    setOptItemInfo(optInfo);
+  };
 
   const itemInfoGetter = () => {
     setIsOpenModal(prev => !prev);
@@ -52,12 +57,13 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
       .then(result => {
         if (result.message === 'Cart was deleted') {
           alert('선택하신 제품이 삭제되었습니다. ');
-          event.nativeEvent.path[2].innerHTML = '';
+          const eventNativeEvent = event.nativeEvent;
+          eventNativeEvent.path[2].innerHTML = '';
         }
       });
   }
 
-  const postWish = event => {
+  const postWish = () => {
     fetch(`http://192.168.243.200:8000/wishlist`, {
       method: 'POST',
       headers: {
@@ -65,7 +71,7 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
         authorization: accessToken,
       },
       body: JSON.stringify({
-        productId: productId,
+        productId,
       }),
     })
       .then(response => response.json())
@@ -76,24 +82,21 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
       );
   };
 
-  let cartDiscountRate = Math.ceil(
+  const cartDiscountRate = Math.ceil(
     (1 - Number(discountPrice) / Number(retailPrice)) * 100
   );
-  const getSeletedCartId = id => {
-    const optInfo = [cartItems].filter(cartItem => cartItem.cartId === id);
-    setOptItemInfo(optInfo);
-  };
 
   const toDetailPage = () => {
     navigate(`/item-detail/${productId}`, {
       state: {
-        productId: productId,
+        productId,
       },
     });
   };
   return (
     <li className="cartItem" id={cartId}>
       <img
+        role="presentation"
         className="cartItemImg"
         alt="제품"
         src={thumbnail}
@@ -107,7 +110,11 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
         <p className="cartItemDes">수량 : {quantity}</p>
       </div>
       <div>
-        <button className="cartOptChange" onClick={itemInfoGetter}>
+        <button
+          type="button"
+          className="cartOptChange"
+          onClick={itemInfoGetter}
+        >
           옵션 변경
         </button>
       </div>
@@ -132,15 +139,19 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
           {Number(discountPrice).toLocaleString()}
         </p>
       </div>
-      <button className="cartDelItem" onClick={delCartItem}>
+      <button type="button" className="cartDelItem" onClick={delCartItem}>
         <i className="fa-regular fa-trash-can del " />
       </button>
-      <button className="addWishBtn" onClick={postWish}>
+      <button type="button" className="addWishBtn" onClick={postWish}>
         위시리스트에 추가
       </button>
       {isOpenModal && (
         <>
-          <div className="optOverlay" onClick={() => setIsOpenModal(false)} />
+          <div
+            role="presentation"
+            className="optOverlay"
+            onClick={() => setIsOpenModal(false)}
+          />
           <OptModal
             setIsOpenModal={setIsOpenModal}
             productId={productId}
