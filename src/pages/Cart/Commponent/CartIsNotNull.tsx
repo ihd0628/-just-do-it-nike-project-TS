@@ -58,11 +58,10 @@ function CartIsNotNull({
         </div>
         <ul className="cartItemsList">
           {cartItems &&
-            cartItems.map(cartItem => (
+            cartItems.map(cartItemElement => (
               <CartItem
-                key={cartItem.cartId}
-                cartItems={cartItems}
-                setCartItems={setCartItems}
+                key={cartItemElement.cartId}
+                cartItemElement={cartItemElement}
                 pageReloader={pageReloader}
                 setPageReloader={setPageReloader}
               />

@@ -3,10 +3,32 @@ import { useNavigate } from 'react-router-dom';
 import OptModal from './OptModal';
 import './CartItem.scss';
 
-function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
+interface CartItemTypes {
+  productId: string;
+  discountPrice: string;
+  cartId: string;
+  thumbnail: string;
+  quantity: string;
+  productName: string;
+  size: string;
+  retailPrice: string;
+  styleCode: string;
+}
+
+interface PropsTypes {
+  cartItemElement: CartItemTypes;
+  pageReloader: boolean;
+  setPageReloader: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function CartItem({
+  cartItemElement,
+  pageReloader,
+  setPageReloader,
+}: PropsTypes) {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [optItemInfo, setOptItemInfo] = useState('');
+  const [optItemInfo, setOptItemInfo] = useState<Array<CartItemTypes>>([]);
   const [cartOptItems, setCartOptItems] = useState('');
 
   const accessToken = localStorage.getItem('token');
@@ -21,10 +43,12 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
     size,
     retailPrice,
     styleCode,
-  } = cartItems;
+  } = cartItemElement;
 
-  const getSeletedCartId = id => {
-    const optInfo = [cartItems].filter(cartItem => cartItem.cartId === id);
+  const getSeletedCartId = (id: string) => {
+    const optInfo = [cartItemElement].filter(
+      cartItem => cartItem.cartId === id
+    );
     setOptItemInfo(optInfo);
   };
 
@@ -33,7 +57,7 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
     getSeletedCartId(cartId);
     fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
       headers: {
-        authorization: accessToken,
+        authorization: accessToken || 'noToken',
       },
     })
       .then(res => {
@@ -46,18 +70,18 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
       .then(data => setCartOptItems(data));
   };
 
-  async function delCartItem(event) {
+  async function delCartItem(event: React.MouseEvent) {
     fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
       method: 'DELETE',
       headers: {
-        authorization: localStorage.getItem('token'),
+        authorization: localStorage.getItem('token') || 'noToken',
       },
     })
       .then(response => response.json())
       .then(result => {
         if (result.message === 'Cart was deleted') {
           alert('선택하신 제품이 삭제되었습니다. ');
-          const eventNativeEvent = event.nativeEvent;
+          const eventNativeEvent = event.nativeEvent as any;
           eventNativeEvent.path[2].innerHTML = '';
         }
       });
@@ -68,7 +92,7 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization: accessToken,
+        authorization: accessToken || 'noToken',
       },
       body: JSON.stringify({
         productId,
@@ -101,7 +125,7 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
         alt="제품"
         src={thumbnail}
         id={productId}
-        onClick={() => toDetailPage(productId)}
+        onClick={() => toDetailPage()}
       />
       <div className="cartItemInfo">
         <h6 className="cartItemTitle">{productName}</h6>
@@ -154,10 +178,8 @@ function CartItem({ cartItems, setCartItems, pageReloader, setPageReloader }) {
           />
           <OptModal
             setIsOpenModal={setIsOpenModal}
-            productId={productId}
             optItemInfo={optItemInfo}
             cartOptItems={cartOptItems}
-            setCartItems={setCartItems}
             cartDiscountRate={cartDiscountRate}
             pageReloader={pageReloader}
             setPageReloader={setPageReloader}
