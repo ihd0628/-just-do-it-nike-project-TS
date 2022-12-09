@@ -20,7 +20,8 @@ function CartIsNotNull({
       .then(result => {
         if (result.message === 'All carts were deleted') {
           alert('전체제품이 삭제되었습니다.');
-          event.nativeEvent.path[2].innerHTML = '';
+          const eventNativeEvent = event.nativeEvent;
+          eventNativeEvent.path[2].innerHTML = '';
         }
       });
   }
@@ -28,15 +29,19 @@ function CartIsNotNull({
     <article className="cartWrapper">
       <section className="cartItemsListWrapper">
         <div className="cartItemsListHeader">
-          <button className="cartDelItems" onClick={delCartItemAll}>
+          <button
+            type="button"
+            className="cartDelItems"
+            onClick={delCartItemAll}
+          >
             전체삭제
           </button>
         </div>
         <ul className="cartItemsList">
           {cartItems &&
-            cartItems.map(cartItems => (
+            cartItems.map(cartItem => (
               <CartItem
-                key={cartItems.cartId}
+                key={cartItem.cartId}
                 cartItems={cartItems}
                 setCartItems={setCartItems}
                 pageReloader={pageReloader}
