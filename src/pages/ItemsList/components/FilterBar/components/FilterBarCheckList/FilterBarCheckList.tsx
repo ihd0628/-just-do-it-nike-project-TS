@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
+import { CheckList } from '../../../ItemListTypes';
 import './filterBarCheckList.scss';
-
-interface CheckList {
-  [key: string]: number[];
-}
 
 interface PropsTypes {
   category: string;

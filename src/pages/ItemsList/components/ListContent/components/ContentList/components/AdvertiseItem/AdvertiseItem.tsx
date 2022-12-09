@@ -1,3 +1,5 @@
+import React from 'react';
+
 function AdvertiseItem() {
   return (
     <div className="video">

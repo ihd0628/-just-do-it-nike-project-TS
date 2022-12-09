@@ -1,34 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CONTENTS_MOCK from './mockData/contentMock';
 import './contentList.scss';
 import AdvertiseItem from './components/AdvertiseItem/AdvertiseItem';
 import ContentItem from './components/ContentItem/ContentItem';
+import { ProductTypes } from '../../../ItemListTypes';
 
-interface productTypes {
-  id: string;
-  thumbnail: string;
-  productName: string;
-  description: string;
-  brandName: string;
-  color: string;
-  discountPrice: number;
-  retailPrice: number;
-}
-
-interface propsTypes {
-  products: Array<productTypes>;
+interface PropsTypes {
+  products: Array<ProductTypes>;
   itemListCount: React.RefObject<HTMLDivElement>;
 }
 
-function ContentList({ products, itemListCount }: propsTypes) {
+function ContentList({ products, itemListCount }: PropsTypes) {
   return (
     <div className="contentItems">
       <div className="contentItemContainor" ref={itemListCount}>
         <div className="contentItem">
           <AdvertiseItem />
         </div>
-        {products.length !== undefined
-          ? products.map(
+        {products?.length !== undefined
+          ? CONTENTS_MOCK.map(
               ({
                 id,
                 thumbnail,
@@ -38,7 +28,7 @@ function ContentList({ products, itemListCount }: propsTypes) {
                 color,
                 discountPrice,
                 retailPrice,
-              }: productTypes) => {
+              }) => {
                 return (
                   <ContentItem
                     key={id}

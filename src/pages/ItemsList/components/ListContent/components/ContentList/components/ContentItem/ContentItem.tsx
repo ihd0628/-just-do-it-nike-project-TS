@@ -1,16 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-interface propsTypes {
-  id: string;
-  thumbnail: string;
-  productName: string;
-  description: string;
-  brandName: string;
-  color: string;
-  discountPrice: number;
-  retailPrice: number;
-}
+import { ProductTypes } from '../../../../../ItemListTypes';
 
 function ContentItem({
   id,
@@ -21,7 +11,7 @@ function ContentItem({
   color,
   discountPrice,
   retailPrice,
-}: propsTypes) {
+}: ProductTypes) {
   const navigate = useNavigate();
 
   const goToItemDetail = () => {
@@ -31,6 +21,7 @@ function ContentItem({
   return (
     <div className="contentItem" key={id}>
       <div
+        role="presentation"
         className="itemImg"
         style={{ backgroundColor: `white` }}
         onClick={goToItemDetail}

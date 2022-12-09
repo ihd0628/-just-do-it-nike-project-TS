@@ -6,21 +6,7 @@ import ListHeader from './components/listHeader/ListHeader';
 import standardObject from './components/FilterBar/constantData/standardObject';
 
 import './itemList.scss';
-
-interface ProductTypes {
-  id: string;
-  thumbnail: string;
-  productName: string;
-  description: string;
-  brandName: string;
-  color: string;
-  discountPrice: number;
-  retailPrice: number;
-}
-
-interface CheckList {
-  [key: string]: number[];
-}
+import { CheckList, ProductTypes } from './components/ItemListTypes';
 
 function ItemList() {
   const [products, setProducts] = useState<Array<ProductTypes>>([]);
