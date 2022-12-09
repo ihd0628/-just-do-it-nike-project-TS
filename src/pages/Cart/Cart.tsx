@@ -3,16 +3,28 @@ import CartIsNull from './Commponent/CartIsNull';
 import CartIsNotNull from './Commponent/CartIsNotNull';
 import './Cart.scss';
 
+interface CartItem {
+  productId: string;
+  discountPrice: string;
+  cartId: string;
+  thumbnail: string;
+  quantity: string;
+  productName: string;
+  size: string;
+  retailPrice: string;
+  styleCode: string;
+}
+
 function Cart() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<Array<CartItem>>([]);
   const [pageReloader, setPageReloader] = useState(false);
 
-  //통신용
+  // 통신용
   useEffect(() => {
     fetch('http://192.168.243.200:8000/carts', {
-      mehtod: 'GET',
+      method: 'GET',
       headers: {
-        authorization: localStorage.getItem('token'),
+        authorization: localStorage.getItem('token') || 'noToken',
       },
     })
       .then(response => {
