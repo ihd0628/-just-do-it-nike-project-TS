@@ -3,7 +3,7 @@ import CONTENTS_MOCK from './mockData/contentMock';
 import './contentList.scss';
 import AdvertiseItem from './components/AdvertiseItem/AdvertiseItem';
 import ContentItem from './components/ContentItem/ContentItem';
-import { ProductTypes } from '../../../ItemListTypes';
+import { ProductTypes } from '../../../../ItemListTypes';
 
 interface PropsTypes {
   products: Array<ProductTypes>;

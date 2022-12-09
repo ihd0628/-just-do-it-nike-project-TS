@@ -5,7 +5,7 @@ import FilterBarSize from './components/FilterBarSize/FilterBarSize';
 
 import FILTER_BAR_CHECKLIST from './components/FilterBarCheckList/constantData/filterBarItems';
 import './filterBar.scss';
-import { CheckList } from '../ItemListTypes';
+import { CheckList } from '../../ItemListTypes';
 
 interface PropsTypes {
   filterHider: boolean;

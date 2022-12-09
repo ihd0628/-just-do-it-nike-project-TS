@@ -2,7 +2,7 @@ import React from 'react';
 import ContentHeader from './components/ContentHeader/ContentHeader';
 import ContentNext from './components/ContentNext/ContentNext';
 import ContentList from './components/ContentList/ContentList';
-import { ProductTypes } from '../ItemListTypes';
+import { ProductTypes } from '../../ItemListTypes';
 import './listContent.scss';
 
 interface PropsTypes {

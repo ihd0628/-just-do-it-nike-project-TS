@@ -1,6 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ProductTypes } from '../../../../../ItemListTypes';
+import { ProductTypes } from '../../../../../../ItemListTypes';
+
+const CONSTANT_TEXT = {
+  WON: '원',
+};
 
 function ContentItem({
   id,
@@ -48,10 +52,10 @@ function ContentItem({
               </div>
               <div className="price detail">
                 <div className="discountPrice detail">
-                  {Number(discountPrice).toLocaleString()}원
+                  {Number(discountPrice).toLocaleString() + CONSTANT_TEXT.WON}
                 </div>
                 <div className="retailPrice detail">
-                  {Number(retailPrice).toLocaleString()}원
+                  {Number(retailPrice).toLocaleString() + CONSTANT_TEXT.WON}
                 </div>
               </div>
             </>

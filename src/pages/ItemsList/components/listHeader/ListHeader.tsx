@@ -3,6 +3,9 @@ import ModalForItemList from './components/Modal/ModalForItemList';
 import ModarlPortalForItemList from './components/Modal/PortalForItemList';
 import './listHeader.scss';
 
+const CONSTANT_TEXT = {
+  FILTER: '필터',
+};
 interface PropsTypes {
   filterHider: boolean;
   setFilterHider: React.Dispatch<React.SetStateAction<boolean>>;
@@ -44,14 +47,13 @@ function ListHeader({
           className="headerFilter"
           onClick={filterController}
         >
-          <div className="text">필터</div>
+          <div className="text">{CONSTANT_TEXT.FILTER}</div>
           <img
             src={`./image/itemList/filter${
               filterHider === false ? 'white' : 'black'
             }.png`}
             alt="필터 가리기"
           />
-          {/* 3항연산자로 부르는 이미지만 왔다갔다하게해주기 위아래 전부 */}
         </div>
         <div
           role="presentation"

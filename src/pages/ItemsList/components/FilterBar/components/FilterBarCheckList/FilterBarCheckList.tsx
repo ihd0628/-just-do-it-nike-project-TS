@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckList } from '../../../ItemListTypes';
+import { CheckList } from '../../../../ItemListTypes';
 import './filterBarCheckList.scss';
 
 interface PropsTypes {

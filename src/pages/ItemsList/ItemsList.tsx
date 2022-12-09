@@ -6,7 +6,7 @@ import ListHeader from './components/listHeader/ListHeader';
 import standardObject from './components/FilterBar/constantData/standardObject';
 
 import './itemList.scss';
-import { CheckList, ProductTypes } from './components/ItemListTypes';
+import { CheckList, ProductTypes } from './ItemListTypes';
 
 function ItemList() {
   const [products, setProducts] = useState<Array<ProductTypes>>([]);
