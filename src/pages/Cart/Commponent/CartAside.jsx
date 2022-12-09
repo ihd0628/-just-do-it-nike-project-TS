@@ -19,7 +19,8 @@ function CartAside({ cartItems, setCartItems }) {
   };
 
   const sumCartRetailPrice = cartItems.reduce((sum, num) => {
-    return (sum += num.quantity * Number(num.retailPrice));
+    const sumForReturn = sum + num.quantity * Number(num.retailPrice);
+    return sumForReturn;
   }, 0);
 
   const calCartDiscountedPrice = cartItems.reduce((sum, num) => {
@@ -60,7 +61,11 @@ function CartAside({ cartItems, setCartItems }) {
               {(sumCartRetailPrice - calCartDiscountedPrice).toLocaleString()}원
             </span>
           </div>
-          <button className="checkoutOrderBtn" onClick={cartOrder}>
+          <button
+            type="button"
+            className="checkoutOrderBtn"
+            onClick={cartOrder}
+          >
             주문하기
           </button>
         </div>
@@ -73,7 +78,9 @@ function CartAside({ cartItems, setCartItems }) {
             type="text"
             placeholder="프로모션 코드 입력"
           />
-          <button className="couponBtn">적용</button>
+          <button type="button" className="couponBtn">
+            적용
+          </button>
         </form>
       </div>
     </aside>
