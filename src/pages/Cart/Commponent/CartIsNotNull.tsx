@@ -3,24 +3,43 @@ import CartItem from './CartItem';
 import CartAside from './CartAside';
 import './CartIsNotNull.scss';
 
+interface CartItemTypes {
+  productId: string;
+  discountPrice: string;
+  cartId: string;
+  thumbnail: string;
+  quantity: string;
+  productName: string;
+  size: string;
+  retailPrice: string;
+  styleCode: string;
+}
+
+interface PropsTypes {
+  cartItems: Array<CartItemTypes>;
+  setCartItems: React.Dispatch<React.SetStateAction<CartItemTypes[]>>;
+  pageReloader: boolean;
+  setPageReloader: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 function CartIsNotNull({
   cartItems,
   setCartItems,
   pageReloader,
   setPageReloader,
-}) {
-  async function delCartItemAll(event) {
+}: PropsTypes) {
+  async function delCartItemAll(event: React.MouseEvent) {
     fetch(`http://192.168.243.200:8000/carts`, {
       method: 'DELETE',
       headers: {
-        authorization: localStorage.getItem('token'),
+        authorization: localStorage.getItem('token') || 'noToken',
       },
     })
       .then(response => response.json())
       .then(result => {
         if (result.message === 'All carts were deleted') {
           alert('전체제품이 삭제되었습니다.');
-          const eventNativeEvent = event.nativeEvent;
+          const eventNativeEvent = event.nativeEvent as any;
           eventNativeEvent.path[2].innerHTML = '';
         }
       });

@@ -3,7 +3,7 @@ import CartIsNull from './Commponent/CartIsNull';
 import CartIsNotNull from './Commponent/CartIsNotNull';
 import './Cart.scss';
 
-interface CartItem {
+interface CartItemTypes {
   productId: string;
   discountPrice: string;
   cartId: string;
@@ -16,7 +16,7 @@ interface CartItem {
 }
 
 function Cart() {
-  const [cartItems, setCartItems] = useState<Array<CartItem>>([]);
+  const [cartItems, setCartItems] = useState<Array<CartItemTypes>>([]);
   const [pageReloader, setPageReloader] = useState(false);
 
   // 통신용
