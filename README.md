@@ -7,6 +7,7 @@
 - [x] Main 컴포넌트
 - [x] SignUp 컴포넌트
 - [x] WishList 컴포넌트
+- [x] Cart 컴포넌트
 
 # 1. 팀 소개
 
