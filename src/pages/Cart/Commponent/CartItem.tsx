@@ -8,7 +8,7 @@ interface CartItemTypes {
   discountPrice: string;
   cartId: string;
   thumbnail: string;
-  quantity: string;
+  quantity: number;
   productName: string;
   size: string;
   retailPrice: string;

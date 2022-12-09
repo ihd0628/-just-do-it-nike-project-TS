@@ -1,20 +1,37 @@
 import React from 'react';
 import './CartAside.scss';
 
-function CartAside({ cartItems, setCartItems }) {
+interface CartItemTypes {
+  productId: string;
+  discountPrice: string;
+  cartId: string;
+  thumbnail: string;
+  quantity: number;
+  productName: string;
+  size: string;
+  retailPrice: string;
+  styleCode: string;
+}
+
+interface PropsTypes {
+  cartItems: Array<CartItemTypes>;
+  setCartItems: React.Dispatch<React.SetStateAction<CartItemTypes[]>>;
+}
+
+function CartAside({ cartItems, setCartItems }: PropsTypes) {
   const accessToken = localStorage.getItem('token');
 
   const cartOrder = () => {
     fetch('http://192.168.243.200:8000/orders/carts', {
       method: 'POST',
       headers: {
-        authorization: accessToken,
+        authorization: accessToken || 'noToken',
       },
     })
       .then(res => res.json())
       .then(data => {
         setCartItems(data);
-        alert('주문이 완료되었습니다. 이승훈 존잘');
+        alert('주문이 완료되었습니다.');
       });
   };
 
@@ -25,7 +42,7 @@ function CartAside({ cartItems, setCartItems }) {
 
   const calCartDiscountedPrice = cartItems.reduce((sum, num) => {
     return num.discountPrice !== null
-      ? sum + num.quantity * Number(num.retailPrice - num.discountPrice)
+      ? sum + num.quantity * Number(num.retailPrice) - Number(num.discountPrice)
       : sum;
   }, 0);
 
