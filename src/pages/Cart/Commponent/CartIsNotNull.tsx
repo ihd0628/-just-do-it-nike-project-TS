@@ -4,28 +4,30 @@ import CartAside from './CartAside';
 import './CartIsNotNull.scss';
 
 interface CartItemTypes {
-  productId: string;
-  discountPrice: string;
-  cartId: string;
-  thumbnail: string;
-  quantity: number;
-  productName: string;
-  size: string;
-  retailPrice: string;
+  cartId: number;
+  userId: number;
   styleCode: string;
+  quantity: number;
+  productOptionId: number;
+  productId: number;
+  productName: string;
+  sizeId: number;
+  size: string;
+  stock: number;
+  retailPrice: string;
+  discountPrice: string;
+  thumbnail: string;
 }
 
 interface PropsTypes {
   cartItems: Array<CartItemTypes>;
   setCartItems: React.Dispatch<React.SetStateAction<CartItemTypes[]>>;
-  pageReloader: boolean;
   setPageReloader: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function CartIsNotNull({
   cartItems,
   setCartItems,
-  pageReloader,
   setPageReloader,
 }: PropsTypes) {
   async function delCartItemAll(event: React.MouseEvent) {
@@ -62,7 +64,6 @@ function CartIsNotNull({
               <CartItem
                 key={cartItemElement.cartId}
                 cartItemElement={cartItemElement}
-                pageReloader={pageReloader}
                 setPageReloader={setPageReloader}
               />
             ))}

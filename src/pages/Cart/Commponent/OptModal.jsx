@@ -6,9 +6,7 @@ function OptModal({
   optItemInfo,
   cartOptItems,
   cartDiscountRate,
-  pageReloader,
   setPageReloader,
-  itemInfoGetter,
 }) {
   const { retailPrice, discountPrice, quantity, productName, size, cartId } =
     optItemInfo[0];
@@ -20,12 +18,23 @@ function OptModal({
 
   let selctedOptId = 0;
 
-  productOptions &&
-    productOptions.map(option => {
-      if (option.size === selectedSize) {
-        selctedOptId = option.productOptionId;
-      }
-    });
+  const handleOptPulsBtn = () => {
+    setOptCount(prev => prev + 1);
+  };
+
+  const handleOptMinusBtn = () => {
+    setOptCount(prev => prev - 1);
+  };
+
+  const changeOpt = () => {
+    setIsOpenModal(prev => !prev);
+  };
+
+  productOptions?.forEach(option => {
+    if (option.size === selectedSize) {
+      selctedOptId = option.productOptionId;
+    }
+  });
   const changeCartItemInfo = () => {
     fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
       method: 'PATCH',
@@ -52,6 +61,7 @@ function OptModal({
         } else if (result.message === 'WRONG_INPUT_REQUEST')
           alert('잘못된 요청이 들어왔습니다');
       });
+    setIsOpenModal(prev => !prev);
   };
 
   useEffect(() => {
@@ -70,24 +80,19 @@ function OptModal({
     setOptCount(toNum);
   };
 
-  const handleOptPulsBtn = () => {
-    setOptCount(prev => prev + 1);
-  };
-
-  const handleOptMinusBtn = () => {
-    setOptCount(prev => prev - 1);
-  };
-
-  const changeOpt = e => {
-    setIsOpenModal(prev => !prev);
-  };
-
   return (
     <div className="optContainer">
       <section className="optImgsContainer">
         {cartOptItems &&
-          cartOptItems.images.map((images, idx) => {
-            return <img key={idx} className="optImg" alt="신발" src={images} />;
+          cartOptItems.images.map(image => {
+            return (
+              <img
+                key={image.imageUrl}
+                className="optImg"
+                alt="신발"
+                src={image}
+              />
+            );
           })}
       </section>
       <article className="optRight">
@@ -129,6 +134,7 @@ function OptModal({
               cartOptItems.productOptions.map(opt => {
                 return (
                   <button
+                    type="button"
                     title={opt.size}
                     onClick={changedSize}
                     key={opt.productOptionId}
@@ -144,8 +150,15 @@ function OptModal({
           </div>
         </div>
         <div className="optChangeCount">
-          <label className="optCountLabel">수량</label>
+          <label
+            htmlFor="itemCount"
+            role="presentation"
+            className="optCountLabel"
+          >
+            수량
+          </label>
           <input
+            id="countInput"
             className="itemCount"
             type="text"
             name="itemCount"
@@ -153,6 +166,7 @@ function OptModal({
             onChange={handleOptInputCount}
           />
           <button
+            type="button"
             className="cartCountDown"
             disabled={minusDisabled}
             onClick={handleOptMinusBtn}
@@ -160,6 +174,7 @@ function OptModal({
             <i className="fa-solid fa-minus" />
           </button>
           <button
+            type="button"
             className="cartCountUp"
             disabled={plusDisabled}
             onClick={handleOptPulsBtn}
@@ -171,8 +186,8 @@ function OptModal({
           최대 구매 가능 수량은 10개까지 입니다
         </div>
         <button
+          type="button"
           className="optChangeBtn"
-          onClick={changeOpt}
           onClick={changeCartItemInfo}
         >
           옵션변경하기

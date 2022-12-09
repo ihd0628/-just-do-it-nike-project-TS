@@ -2,15 +2,19 @@ import React from 'react';
 import './CartAside.scss';
 
 interface CartItemTypes {
-  productId: string;
-  discountPrice: string;
-  cartId: string;
-  thumbnail: string;
-  quantity: number;
-  productName: string;
-  size: string;
-  retailPrice: string;
+  cartId: number;
+  userId: number;
   styleCode: string;
+  quantity: number;
+  productOptionId: number;
+  productId: number;
+  productName: string;
+  sizeId: number;
+  size: string;
+  stock: number;
+  retailPrice: string;
+  discountPrice: string;
+  thumbnail: string;
 }
 
 interface PropsTypes {

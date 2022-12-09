@@ -4,28 +4,27 @@ import OptModal from './OptModal';
 import './CartItem.scss';
 
 interface CartItemTypes {
-  productId: string;
-  discountPrice: string;
-  cartId: string;
-  thumbnail: string;
-  quantity: number;
-  productName: string;
-  size: string;
-  retailPrice: string;
+  cartId: number;
+  userId: number;
   styleCode: string;
+  quantity: number;
+  productOptionId: number;
+  productId: number;
+  productName: string;
+  sizeId: number;
+  size: string;
+  stock: number;
+  retailPrice: string;
+  discountPrice: string;
+  thumbnail: string;
 }
 
 interface PropsTypes {
   cartItemElement: CartItemTypes;
-  pageReloader: boolean;
   setPageReloader: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function CartItem({
-  cartItemElement,
-  pageReloader,
-  setPageReloader,
-}: PropsTypes) {
+function CartItem({ cartItemElement, setPageReloader }: PropsTypes) {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [optItemInfo, setOptItemInfo] = useState<Array<CartItemTypes>>([]);
@@ -47,14 +46,14 @@ function CartItem({
 
   const getSeletedCartId = (id: string) => {
     const optInfo = [cartItemElement].filter(
-      cartItem => cartItem.cartId === id
+      cartItem => cartItem.cartId === Number(id)
     );
     setOptItemInfo(optInfo);
   };
 
   const itemInfoGetter = () => {
     setIsOpenModal(prev => !prev);
-    getSeletedCartId(cartId);
+    getSeletedCartId(String(cartId));
     fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
       headers: {
         authorization: accessToken || 'noToken',
@@ -118,13 +117,13 @@ function CartItem({
     });
   };
   return (
-    <li className="cartItem" id={cartId}>
+    <li className="cartItem" id={String(cartId)}>
       <img
         role="presentation"
         className="cartItemImg"
         alt="제품"
         src={thumbnail}
-        id={productId}
+        id={String(productId)}
         onClick={() => toDetailPage()}
       />
       <div className="cartItemInfo">
@@ -181,9 +180,7 @@ function CartItem({
             optItemInfo={optItemInfo}
             cartOptItems={cartOptItems}
             cartDiscountRate={cartDiscountRate}
-            pageReloader={pageReloader}
             setPageReloader={setPageReloader}
-            itemInfoGetter={itemInfoGetter}
           />
         </>
       )}
