@@ -33,12 +33,15 @@ function ItemList() {
       sortStandard
     );
     setSearchParams(queryString);
-    console.log('queryString : ', queryString);
-    fetch(`http://192.168.243.200:8000/products?${queryString}`)
-      .then(response => response.json())
-      .then(result => {
-        setProducts(result.list);
-      });
+    try {
+      fetch(`http://192.168.243.200:8000/products?${queryString}`)
+        .then(response => response.json())
+        .then(result => {
+          setProducts(result.list);
+        });
+    } catch (e: any) {
+      console.log(e);
+    }
   }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
 
   return (
