@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 import reactDom from 'react-dom';
 
-interface propsTypes {
+interface PropsTypes {
   children: ReactNode;
 }
 
-const ModarlPortalForItemList = ({ children }: propsTypes) => {
+const ModarlPortalForItemList = ({ children }: PropsTypes) => {
   const el = document.getElementById('modalForItemList');
   return reactDom.createPortal(children, el!);
 };

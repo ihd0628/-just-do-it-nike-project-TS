@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ProductTypes } from '../../../../../../ItemListTypes';
+import { ProductTypes } from '../../../../../../types/ItemListTypes';
 
 const CONSTANT_TEXT = {
   WON: '원',

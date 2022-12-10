@@ -5,9 +5,9 @@ import ListContent from './components/ListContent/ListContent';
 import ListHeader from './components/listHeader/ListHeader';
 
 import './itemList.scss';
-import { CheckList, ProductTypes } from './ItemListTypes';
+import { CheckList, ProductTypes } from './types/ItemListTypes';
 
-const GetQueryString = require('./GetQueryStringMethod');
+const GetQueryString = require('./method/GetQueryStringMethod');
 
 function ItemList() {
   const [products, setProducts] = useState<Array<ProductTypes>>([]);

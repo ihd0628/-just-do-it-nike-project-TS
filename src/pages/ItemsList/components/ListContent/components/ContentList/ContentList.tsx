@@ -2,7 +2,7 @@ import React from 'react';
 import './contentList.scss';
 import AdvertiseItem from './components/AdvertiseItem/AdvertiseItem';
 import ContentItem from './components/ContentItem/ContentItem';
-import { ProductTypes } from '../../../../ItemListTypes';
+import { ProductTypes } from '../../../../types/ItemListTypes';
 import CONTENTS_MOCK from './mockData/contentMock';
 
 interface PropsTypes {
