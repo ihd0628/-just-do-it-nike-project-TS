@@ -9,7 +9,7 @@ import './itemList.scss';
 import { CheckList, ProductTypes } from './ItemListTypes';
 
 class GetFilterString {
-  private urlForSubmit: string;
+  public filterString: string;
 
   constructor(
     selectedSizeInput: Array<string>,
@@ -20,7 +20,7 @@ class GetFilterString {
     quertString += GetFilterString.selectSizeGetterForUrl(selectedSizeInput);
     quertString += GetFilterString.selectColorGetterForUrl(selectedColorInput);
     quertString += GetFilterString.checkListGetterForUrl(checkListInput);
-    this.urlForSubmit = quertString;
+    this.filterString = quertString;
   }
 
   static selectSizeGetterForUrl(selectedSizeInput: Array<string>) {
@@ -51,6 +51,14 @@ class GetFilterString {
   }
 }
 
+const getSortOptionString = (
+  offset: number,
+  limit: number,
+  sortStandardForSubmit: string
+) => {
+  return `offset=${offset}&limit=${limit}&sort=${sortStandardForSubmit}&`;
+};
+
 function ItemList() {
   const [products, setProducts] = useState<Array<ProductTypes>>([]);
   const [sortStandard, setSortStandard] = useState<string>('신상품순');
@@ -67,15 +75,17 @@ function ItemList() {
 
   useEffect(() => {
     const sortStandardForSubmit = standardObject[sortStandard];
-    const urlForSubmit = `offset=${offset}&limit=${limit}&sort=${sortStandardForSubmit}&`;
-    const queryStringForFilter = new GetFilterString(
+    const sortString = getSortOptionString(
+      offset,
+      limit,
+      sortStandardForSubmit
+    );
+    const { filterString } = new GetFilterString(
       selectedSize,
       selectedColor,
       checkList
     );
-    console.log('queryStringForFilter : ', queryStringForFilter);
-
-    console.log('urlForSubmit : ', urlForSubmit);
+    const urlForSubmit = sortString + filterString;
 
     setSearchParams(urlForSubmit);
     fetch(`http://192.168.243.200:8000/products?${urlForSubmit}`)
