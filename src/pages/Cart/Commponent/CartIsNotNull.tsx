@@ -2,6 +2,7 @@ import React from 'react';
 import CartItem from './CartItem';
 import CartAside from './CartAside';
 import './CartIsNotNull.scss';
+import { IP_CONFIG } from '../../../config';
 
 interface CartItemTypes {
   cartId: number;
@@ -31,7 +32,7 @@ function CartIsNotNull({
   setPageReloader,
 }: PropsTypes) {
   async function delCartItemAll(event: React.MouseEvent) {
-    fetch(`http://192.168.243.200:8000/carts`, {
+    fetch(`${IP_CONFIG}/carts`, {
       method: 'DELETE',
       headers: {
         authorization: localStorage.getItem('token') || 'noToken',

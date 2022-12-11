@@ -1,4 +1,5 @@
 import React from 'react';
+import { IP_CONFIG } from '../../../config';
 import './CartAside.scss';
 
 interface CartItemTypes {
@@ -26,7 +27,7 @@ function CartAside({ cartItems, setCartItems }: PropsTypes) {
   const accessToken = localStorage.getItem('token');
 
   const cartOrder = () => {
-    fetch('http://192.168.243.200:8000/orders/carts', {
+    fetch(`${IP_CONFIG}/orders/carts`, {
       method: 'POST',
       headers: {
         authorization: accessToken || 'noToken',

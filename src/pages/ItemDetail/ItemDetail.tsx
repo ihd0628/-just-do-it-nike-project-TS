@@ -8,6 +8,7 @@ import Modal from './components/Modal/Modal';
 import ShoesColor from './components/ShoesColor/ShoesColor';
 import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
+import { IP_CONFIG } from '../../config';
 
 interface ThumbailInfo {
   id: string;
@@ -94,7 +95,7 @@ function ItemDetail() {
   const [selectedId, setSelectedId] = useState('');
   // const { stock } = product;
   useEffect(() => {
-    fetch(`http://192.168.243.200:8000/product/${productId}`, {
+    fetch(`${IP_CONFIG}/product/${productId}`, {
       method: 'GET',
       headers: {
         authorization: localStorage?.getItem('token') || '',
@@ -114,7 +115,7 @@ function ItemDetail() {
   });
 
   const orderSubmit = () => {
-    fetch(`http://192.168.243.200:8000/orders`, {
+    fetch(`${IP_CONFIG}/orders`, {
       method: 'POST',
       headers: {
         authorization: localStorage?.getItem('token') || '',
@@ -138,7 +139,7 @@ function ItemDetail() {
       setModal(prev => !prev);
       document.body.style.overflow = 'hidden';
       window.scroll(0, 165);
-      fetch('http://192.168.243.200:8000/carts', {
+      fetch(`${IP_CONFIG}/carts`, {
         method: 'POST',
         headers: {
           authorization: accessToken,
@@ -191,7 +192,7 @@ function ItemDetail() {
   };
 
   const wishSubmit = () => {
-    fetch(`http://192.168.243.200:8000/wishlist`, {
+    fetch(`${IP_CONFIG}/wishlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

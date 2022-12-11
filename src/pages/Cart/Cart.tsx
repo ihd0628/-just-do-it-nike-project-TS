@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CartIsNull from './Commponent/CartIsNull';
 import CartIsNotNull from './Commponent/CartIsNotNull';
 import './Cart.scss';
+import { IP_CONFIG } from '../../config';
 
 interface CartItemTypes {
   cartId: number;
@@ -23,9 +24,8 @@ function Cart() {
   const [cartItems, setCartItems] = useState<Array<CartItemTypes>>([]);
   const [pageReloader, setPageReloader] = useState(false);
 
-  // 통신용
   useEffect(() => {
-    fetch('http://192.168.243.200:8000/carts', {
+    fetch(`${IP_CONFIG}/carts`, {
       method: 'GET',
       headers: {
         authorization: localStorage.getItem('token') || 'noToken',

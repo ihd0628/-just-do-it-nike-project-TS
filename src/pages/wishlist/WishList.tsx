@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import WISH from './WISH_DATA';
 import './WishList.scss';
 import WishItem from './components/WishItem';
+import { IP_CONFIG } from '../../config';
 
 function WishList() {
   const [addWish, setAddWish] = useState([]);
@@ -10,7 +11,7 @@ function WishList() {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    fetch('http://192.168.243.200:8000/wishlist', {
+    fetch(`${IP_CONFIG}/wishlist`, {
       method: 'GET',
       headers: {
         authorization: token || '',

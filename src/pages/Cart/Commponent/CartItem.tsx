@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import OptModal from './OptModal';
 import './CartItem.scss';
+import { IP_CONFIG } from '../../../config';
 
 interface CartOpt {
   brandId: number;
@@ -72,7 +73,7 @@ function CartItem({ cartItemElement, setPageReloader }: PropsTypes) {
   const itemInfoGetter = () => {
     setIsOpenModal(prev => !prev);
     getSeletedCartId(String(cartId));
-    fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
+    fetch(`${IP_CONFIG}/carts/${cartId}`, {
       headers: {
         authorization: accessToken || 'noToken',
       },
@@ -88,7 +89,7 @@ function CartItem({ cartItemElement, setPageReloader }: PropsTypes) {
   };
 
   async function delCartItem(event: React.MouseEvent) {
-    fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
+    fetch(`${IP_CONFIG}/carts/${cartId}`, {
       method: 'DELETE',
       headers: {
         authorization: localStorage.getItem('token') || 'noToken',
@@ -105,7 +106,7 @@ function CartItem({ cartItemElement, setPageReloader }: PropsTypes) {
   }
 
   const postWish = () => {
-    fetch(`http://192.168.243.200:8000/wishlist`, {
+    fetch(`${IP_CONFIG}/wishlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

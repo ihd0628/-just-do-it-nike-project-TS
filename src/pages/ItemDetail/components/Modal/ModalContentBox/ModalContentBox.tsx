@@ -1,4 +1,5 @@
 import React from 'react';
+import { IP_CONFIG } from '../../../../../config';
 import './ModalContentBox.scss';
 
 interface PropsTypes {
@@ -26,7 +27,7 @@ function ModalContentBox({
     const eventElement = event.nativeEvent.path[5];
     eventElement.innerHTML = '';
     // const deleteCartId = event.target.title;
-    fetch(`http://192.168.243.200:8000/carts/${cartId}`, {
+    fetch(`${IP_CONFIG}/carts/${cartId}`, {
       method: 'DELETE',
       headers: {
         authorization: localStorage.getItem('token') || '',

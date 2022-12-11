@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { SEARCH_CONFIG } from '../../config';
+import { IP_CONFIG } from '../../config';
 // import { SEARCH_MODAL_DATA } from './SEARCH_MODAL_DATA';
 import './SearchModal.scss';
-import { useEffect } from 'react';
 
 function SearchModal({ closeTargetModal }) {
   const [comment, setComment] = useState('');
@@ -13,7 +12,7 @@ function SearchModal({ closeTargetModal }) {
   const [searchItemView, setSearchItemView] = useState([]);
 
   useEffect(() => {
-    fetch('http://192.168.243.200:8000/products?offset=0&limit=19')
+    fetch(`${IP_CONFIG}/products?offset=0&limit=19`)
       .then(response => response.json())
       .then(result => setSearchItemView(result.list));
   }, []);
@@ -54,9 +53,9 @@ function SearchModal({ closeTargetModal }) {
       return;
     }
 
-    const inputComment = e.target.value;
+    const inputCommentValue = e.target.value;
 
-    if (!inputComment.length) {
+    if (!inputCommentValue.length) {
       return;
     }
 
@@ -71,8 +70,8 @@ function SearchModal({ closeTargetModal }) {
 
       setRecentHistoryList(updated);
       setComment('');
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
       localStorage.setItem('recentHistory', '[]');
     }
   };
@@ -89,8 +88,16 @@ function SearchModal({ closeTargetModal }) {
   const handleCloseModal = () => closeTargetModal('search');
 
   return (
-    <div className="searchModal" onClick={() => handleCloseModal()}>
-      <div className="searchModalContainer" onClick={e => e.stopPropagation()}>
+    <div
+      role="presentation"
+      className="searchModal"
+      onClick={() => handleCloseModal()}
+    >
+      <div
+        role="presentation"
+        className="searchModalContainer"
+        onClick={e => e.stopPropagation()}
+      >
         <div className="header">
           <div>
             <Link to="/" className="headerLeft">
@@ -109,20 +116,25 @@ function SearchModal({ closeTargetModal }) {
             />
           </div>
           <div className="headerRight">
-            <button className="delateModal" onClick={() => handleCloseModal()}>
+            <button
+              type="button"
+              className="delateModal"
+              onClick={() => handleCloseModal()}
+            >
               <i className="fa-solid fa-x headerRightIcon" />
             </button>
           </div>
         </div>
         <div className="recommendContainer">
           <p className="recommendTitle">최근 검색어</p>
-          {recentHistoryList.map((value, idx) => {
+          {recentHistoryList.map(value => {
             return (
-              <div key={idx} className="recommend">
+              <div key={value.id} className="recommend">
                 <Link to="/item-list" className="recommendItem">
                   {value}
                 </Link>
                 <button
+                  type="button"
                   className="delateRecommend"
                   onClick={() => handleRemoveHistory(value)}
                 >
@@ -132,7 +144,7 @@ function SearchModal({ closeTargetModal }) {
             );
           })}
         </div>
-        {!!recommendationsForView.length ? (
+        {recommendationsForView.length ? (
           <div className="recommendationContainer">
             <p className="recommendationTitle">추천 검색어</p>
             {recommendationsForView.map(({ productName, id }) => {

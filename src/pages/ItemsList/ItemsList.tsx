@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { IP_CONFIG } from '../../config';
 import FilterBar from './components/FilterBar/FilterBar';
 import ListContent from './components/ListContent/ListContent';
 import ListHeader from './components/listHeader/ListHeader';
@@ -34,7 +35,7 @@ function ItemList() {
     );
     setSearchParams(queryString);
     try {
-      fetch(`http://192.168.243.200:8000/products?${queryString}`)
+      fetch(`${IP_CONFIG}/products?${queryString}`)
         .then(response => response.json())
         .then(result => {
           setProducts(result.list);

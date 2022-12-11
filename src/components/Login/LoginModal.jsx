@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { LOGIN_CONFIG } from '../../config';
+import { IP_CONFIG } from '../../config';
 import './LoginModal.scss';
 
 function Login({ closeTargetModal }) {
@@ -24,7 +24,7 @@ function Login({ closeTargetModal }) {
     try {
       validateLogin(value);
 
-      fetch(`http://192.168.243.200:8000/users/signin`, {
+      fetch(`${IP_CONFIG}/users/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',

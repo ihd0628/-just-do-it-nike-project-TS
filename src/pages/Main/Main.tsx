@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import  MAIN_FOOTER_IMG_DATA  from './MAIN_DATA';
 import { Link } from 'react-router-dom';
+import { IP_CONFIG } from '../../config';
 // import { MAIN_CONFIG } from '../../config';
 import './Main.scss';
 
@@ -8,8 +9,7 @@ function Main() {
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
-    // fetch(`${MAIN_CONFIG.api}`)
-    fetch('http://192.168.243.200:8000/products?limit=19&offset=0')
+    fetch(`${IP_CONFIG}/products?limit=19&offset=0`)
       .then(response => response.json())
       .then(({ list }) => setItemList(list))
       .catch(error => console.log(error));
