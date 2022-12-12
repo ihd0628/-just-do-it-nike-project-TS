@@ -36,6 +36,7 @@ function ListHeader({
       setSortStandard(newStandardValue);
   };
 
+  console.log('sortStandard : ', sortStandard);
   return (
     <header className="listHeader">
       <div className="headerLeft">

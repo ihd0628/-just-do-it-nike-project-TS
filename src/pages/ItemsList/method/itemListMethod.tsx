@@ -1,4 +1,4 @@
-interface StandardObject {
+interface SortStandard {
   [key: string]: string;
 }
 
@@ -6,7 +6,7 @@ interface CheckList {
   [key: string]: number[];
 }
 
-const standardObject: StandardObject = {
+const sortstandard: SortStandard = {
   신상품순: 'releaseDate desc',
   판매순: 'salescount desc',
   '리뷰 많은 순': 'reviewcount desc',
@@ -71,7 +71,7 @@ class GetQueryString {
     limitInput: number,
     sortStandardInput: string
   ) {
-    const sortStandardForSubmit = standardObject[sortStandardInput];
+    const sortStandardForSubmit = sortstandard[sortStandardInput];
     return `offset=${offsetInput}&limit=${limitInput}&sort=${sortStandardForSubmit}&`;
   }
 }
@@ -100,4 +100,14 @@ const getFilterOptionsFromQueryList = (searchParamsInput: any) => {
   return filterOptions;
 };
 
-module.exports = { GetQueryString, getFilterOptionsFromQueryList };
+const getKeyByValue = (value: string): string => {
+  return (
+    Object.keys(sortstandard).find(key => sortstandard[key] === value) || ''
+  );
+};
+
+module.exports = {
+  GetQueryString,
+  getFilterOptionsFromQueryList,
+  getKeyByValue,
+};

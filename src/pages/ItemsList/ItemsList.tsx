@@ -11,6 +11,7 @@ import { CheckList, ProductTypes } from './types/ItemListTypes';
 const {
   GetQueryString,
   getFilterOptionsFromQueryList,
+  getKeyByValue,
 } = require('./method/itemListMethod');
 
 function ItemList() {
@@ -26,14 +27,15 @@ function ItemList() {
 
   const itemListCount = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const filterOptions = getFilterOptionsFromQueryList(searchParams);
-    if (filterOptions.limit.length !== 0) {
-      setSelectedSize([...filterOptions.size]);
-      setSelectedColor([...filterOptions.color]);
-      setCheckList({ ...filterOptions.checkList });
-      setOffset(filterOptions.offset[0]);
-      setLimit(filterOptions.limit[0]);
-      setSortStandard(filterOptions.sort[0]);
+    const filterOptns = getFilterOptionsFromQueryList(searchParams);
+    console.log(filterOptns);
+    if (filterOptns.size) setSelectedSize([...filterOptns.size]);
+    if (filterOptns.color) setSelectedColor([...filterOptns.color]);
+    if (filterOptns.checkList) setCheckList({ ...filterOptns.checkList });
+    if (filterOptns.offset[0]) setOffset(filterOptns.offset[0]);
+    if (filterOptns.limit[0]) setLimit(filterOptns.limit[0]);
+    if (filterOptns.sort[0]) {
+      setSortStandard(getKeyByValue(filterOptns.sort[0] as string));
     }
   }, []);
 
