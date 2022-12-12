@@ -39,12 +39,12 @@ function Nav() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const fullName = localStorage.getItem('fullName');
+    const tokenInLocalStorage = localStorage.getItem('token');
+    const fullNameInLocalStorage = localStorage.getItem('fullName');
 
-    if (token && fullName) {
-      setToken(token);
-      setFullName(fullName);
+    if (tokenInLocalStorage && fullNameInLocalStorage) {
+      setToken(tokenInLocalStorage);
+      setFullName(fullNameInLocalStorage);
     }
   }, [localStorage.getItem('token')]);
 
@@ -66,7 +66,11 @@ function Nav() {
           {token && fullName ? (
             <>
               <p className="navTopRightItem">{fullName}</p> |
-              <button className="navTopRightItem" onClick={handleLogout}>
+              <button
+                type="button"
+                className="navTopRightItem"
+                onClick={handleLogout}
+              >
                 로그아웃
               </button>
             </>
@@ -76,6 +80,7 @@ function Nav() {
                 멤버 가입
               </Link>
               <button
+                type="button"
                 className="navTopRightItem"
                 onClick={() => showTargetModal('login')}
               >

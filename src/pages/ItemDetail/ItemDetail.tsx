@@ -94,6 +94,10 @@ function ItemDetail() {
 
   const [selectedId, setSelectedId] = useState('');
   // const { stock } = product;
+
+  console.log('product : ', product);
+  console.log('product : ', product);
+
   useEffect(() => {
     fetch(`${IP_CONFIG}/product/${productId}`, {
       method: 'GET',
@@ -106,7 +110,6 @@ function ItemDetail() {
         setIsWished(data.isWished);
         setProduct(data);
       });
-    // .then(result => console.log(result));
   }, []);
 
   useEffect(() => {

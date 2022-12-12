@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './color.scss';
 
 interface PropsTypes {
@@ -18,14 +18,16 @@ function Color({
 }: PropsTypes) {
   const [colorCheck, setColorCheck] = useState(false);
 
-  const colorSelector = (event: React.MouseEvent<HTMLDivElement>) => {
-    const eventElement = event.target as HTMLDivElement;
-    const color = eventElement.title;
+  useEffect(() => {
+    if (selectedColor.indexOf(String(colorNumber)) !== -1) setColorCheck(true);
+  }, [selectedColor]);
+
+  const colorSelector = () => {
     let colorArr = [...selectedColor];
-    if (colorArr.indexOf(color) === -1) {
-      colorArr.push(color);
+    if (colorArr.indexOf(colorNumber) === -1) {
+      colorArr.push(colorNumber);
     } else {
-      colorArr = colorArr.filter(element => element !== color);
+      colorArr = colorArr.filter(element => element !== colorNumber);
     }
 
     setColorCheck(prev => !prev);

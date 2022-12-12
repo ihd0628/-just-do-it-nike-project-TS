@@ -8,7 +8,10 @@ import ListHeader from './components/listHeader/ListHeader';
 import './itemList.scss';
 import { CheckList, ProductTypes } from './types/ItemListTypes';
 
-const GetQueryString = require('./method/GetQueryStringMethod');
+const {
+  GetQueryString,
+  getFilterOptionsFromQueryList,
+} = require('./method/itemListMethod');
 
 function ItemList() {
   const [products, setProducts] = useState<Array<ProductTypes>>([]);
@@ -19,10 +22,25 @@ function ItemList() {
   const [selectedSize, setSelectedSize] = useState<string[]>([]);
   const [offset, setOffset] = useState<number>(0);
   const [limit, setLimit] = useState<number>(5);
-  const [, setSearchParams] = useSearchParams();
-  // const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const itemListCount = useRef<HTMLDivElement>(null);
+
+  const setStatesFormQueryString = () => {
+    const filterOptions = getFilterOptionsFromQueryList(searchParams);
+    if (filterOptions.limit.length !== 0) {
+      setSelectedSize([...filterOptions.size]);
+      setSelectedColor([...filterOptions.color]);
+      setCheckList({ ...filterOptions.checkList });
+      setOffset(filterOptions.offset[0]);
+      setLimit(filterOptions.limit[0]);
+      setSortStandard(filterOptions.sort[0]);
+    }
+  };
+
+  useEffect(() => {
+    setStatesFormQueryString();
+  }, []);
 
   useEffect(() => {
     const { queryString } = new GetQueryString(

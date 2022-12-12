@@ -76,4 +76,28 @@ class GetQueryString {
   }
 }
 
-module.exports = GetQueryString;
+const getFilterOptionsFromQueryList = (searchParamsInput: any) => {
+  const queryList = [...searchParamsInput];
+  const filterOptions: any = {
+    size: [],
+    color: [],
+    checkList: {},
+    offset: [],
+    limit: [],
+    sort: [],
+  };
+  queryList.forEach(option => {
+    const [optionName, optionValue] = option;
+    if (filterOptions[optionName]) {
+      filterOptions[optionName].push(optionValue);
+    } else if (filterOptions.checkList[optionName]) {
+      filterOptions.checkList[optionName].push(optionValue);
+    } else if (!filterOptions.checkList[optionName]) {
+      filterOptions.checkList[optionName] = [];
+      filterOptions.checkList[optionName].push(optionValue);
+    }
+  });
+  return filterOptions;
+};
+
+module.exports = { GetQueryString, getFilterOptionsFromQueryList };

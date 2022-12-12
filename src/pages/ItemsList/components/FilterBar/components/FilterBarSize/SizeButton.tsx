@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface PropsTypes {
   size: number;
@@ -9,13 +9,15 @@ interface PropsTypes {
 function SizeButton({ size, selectedSize, setSelectedSize }: PropsTypes) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const sizeSelector = (event: React.MouseEvent<HTMLDivElement>) => {
-    const targetElemet = event.target as HTMLDivElement;
-    const newSize = targetElemet.title;
+  useEffect(() => {
+    if (selectedSize.indexOf(String(size)) !== -1) setIsChecked(true);
+  }, [selectedSize]);
+
+  const sizeSelector = () => {
     let sizeArr = [...selectedSize];
 
-    if (sizeArr.indexOf(newSize) === -1) sizeArr.push(newSize);
-    else sizeArr = sizeArr.filter(element => element !== newSize);
+    if (sizeArr.indexOf(String(size)) === -1) sizeArr.push(String(size));
+    else sizeArr = sizeArr.filter(element => element !== String(size));
 
     setIsChecked(prev => !prev);
     setSelectedSize(sizeArr);
