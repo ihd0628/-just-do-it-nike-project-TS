@@ -12,5 +12,5 @@ export interface ProductTypes {
 }
 
 export interface CheckList {
-  [key: string]: number[];
+  [key: string]: string[];
 }

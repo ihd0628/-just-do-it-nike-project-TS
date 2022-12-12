@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CheckList } from '../../../../types/ItemListTypes';
 import './filterBarCheckList.scss';
+import FilterBarCheckInput from './components/FilterBarCheckInput';
 
 interface PropsTypes {
   category: string;
@@ -21,18 +22,6 @@ function FilterBarCheckList({
 
   const hideController = () => {
     setIsHide(prev => !prev);
-  };
-
-  const checkListManager = (event: React.MouseEvent) => {
-    const selectedElement = event.nativeEvent as any;
-    const selectedCheckList = selectedElement.path[2].elements;
-    const arrayForSubmit = [];
-    for (let i = 0; i < selectedCheckList.length; i += 1) {
-      if (selectedCheckList[i].checked === true) arrayForSubmit.push(i + 1);
-    }
-    const checklistForCopy = { ...checkList };
-    checklistForCopy[categoryCode] = arrayForSubmit;
-    setCheckList({ ...checklistForCopy });
   };
 
   return (
@@ -61,17 +50,16 @@ function FilterBarCheckList({
         className="checkList"
         style={isHide === false ? {} : { display: 'none' }}
       >
-        {listArr.map(list => {
+        {listArr.map((list, index) => {
           return (
-            <div className="list" key={list}>
-              <input
-                type="checkbox"
-                id={list}
-                name={list}
-                onClick={checkListManager}
-              />
-              <label htmlFor={list}>{list}</label>
-            </div>
+            <FilterBarCheckInput
+              key={list}
+              categoryCode={categoryCode}
+              list={list}
+              checkList={checkList}
+              setCheckList={setCheckList}
+              index={index}
+            />
           );
         })}
       </form>
