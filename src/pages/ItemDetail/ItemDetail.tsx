@@ -9,31 +9,8 @@ import ShoesColor from './components/ShoesColor/ShoesColor';
 import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
 import { IP_CONFIG } from '../../config';
-import { Product } from './types/ItemDetailTypes';
-
-const productSample: Product = {
-  isWished: false,
-  productOptions: [],
-  imageURL: [''],
-  discountPrice: 'string',
-  retailPrice: 'string',
-  brandName: 'string',
-  color: 'string',
-  styleCode: 'string',
-  review: [],
-  productName: 'string',
-  getThumbnail: [],
-  description: 'string',
-  cartId: 0,
-  userId: 0,
-  quantity: 0,
-  productOptionId: 0,
-  productId: 0,
-  sizeId: 0,
-  size: 'string',
-  stock: 0,
-  thumbnail: 'string',
-};
+import { Product, productSample } from './types/ItemDetailTypes';
+import PRODUCT_MOCK from './mockData/productMock';
 
 function ItemDetail() {
   const [modal, setModal] = useState(false);
@@ -43,7 +20,7 @@ function ItemDetail() {
   const [shoesModal, setShoesModal] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
   const [quantity, setquantity] = useState(1);
-  const [productOptionId, setProductOptionId] = useState('');
+  const [productOptionId, setProductOptionId] = useState(0);
   const [isWished, setIsWished] = useState({});
 
   // const iswished = product.isWished;
@@ -58,6 +35,8 @@ function ItemDetail() {
   console.log('product : ', product);
 
   useEffect(() => {
+    setProduct(PRODUCT_MOCK[0]);
+
     fetch(`${IP_CONFIG}/product/${productId}`, {
       method: 'GET',
       headers: {
@@ -66,8 +45,8 @@ function ItemDetail() {
     })
       .then(res => res.json())
       .then(data => {
-        setIsWished(data.isWished);
-        setProduct(data);
+        setIsWished(data[0].isWished);
+        setProduct(data[0]);
       });
   }, []);
 
@@ -178,13 +157,13 @@ function ItemDetail() {
       <ShoesModal
         closeShoesModal={closeShoesModal}
         shoesModal={shoesModal}
-        imageUrl={product?.imageURL}
+        imageUrl={product?.imageUrl}
       />
 
       <article className="detailSection">
         <div className="detailContent">
           <DetailImgs
-            imageUrl={product?.imageURL}
+            imageUrl={product?.imageUrl}
             openShoesModal={openShoesModal}
           />
         </div>

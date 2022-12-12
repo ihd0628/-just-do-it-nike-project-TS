@@ -1,31 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IP_CONFIG } from '../../../../config';
+import {
+  ProductOption,
+  ReviewInfo,
+  ThumbailInfo,
+} from '../../types/ItemDetailTypes';
 
 import './Modal.scss';
 import ModalContentBox from './ModalContentBox/ModalContentBox';
 
 interface PropsTypes {
   closeModal: () => void;
-}
-
-interface ProductOption {
-  size: string;
-  stock: number;
-  productOptionId: string;
-}
-
-interface ThumbailInfo {
-  id: string;
-  thumbnail: string;
-}
-
-interface ReviewInfo {
-  id: number;
-  starScore: number;
-  fullName: string;
-  createdAt: string;
-  content: string;
 }
 
 interface Product {

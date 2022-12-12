@@ -1,20 +1,21 @@
 import React from 'react';
+import { ImageUrl } from '../../types/ItemDetailTypes';
 import './DetailImgs.scss';
 
 interface PropsTypes {
-  imageUrl: string[];
+  imageUrl: Array<ImageUrl>;
   openShoesModal: () => void;
 }
 
 function DetailImgs({ imageUrl, openShoesModal }: PropsTypes) {
   return (
     <ul className="detailImgs">
-      {imageUrl?.map(url => (
-        <li className="detailProduct" key={url}>
+      {imageUrl?.map(imageInfo => (
+        <li className="detailProduct" key={imageInfo.product_id}>
           <div className="detailImg">
             <img
               role="presentation"
-              src={url}
+              src={imageInfo.imageUrl}
               alt="나이키"
               className="shoesImg"
               onClick={openShoesModal}

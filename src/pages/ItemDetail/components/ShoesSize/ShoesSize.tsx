@@ -7,7 +7,7 @@ interface PropsTypes {
   footSize: Array<ProductOption>;
   setShooseSize: React.Dispatch<React.SetStateAction<string>>;
   setSelectedId: React.Dispatch<React.SetStateAction<string>>;
-  setProductOptionId: React.Dispatch<React.SetStateAction<string>>;
+  setProductOptionId: React.Dispatch<React.SetStateAction<number>>;
   product: Product;
 }
 

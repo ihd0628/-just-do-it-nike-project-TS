@@ -1,11 +1,12 @@
 import React from 'react';
 import './ShoesModal.scss';
 import ShoesImgs from '../ShoesImgs/ShoesImgs';
+import { ImageUrl } from '../../types/ItemDetailTypes';
 
 interface PropsTypes {
   closeShoesModal: () => void;
   shoesModal: boolean;
-  imageUrl: Array<string>;
+  imageUrl: Array<ImageUrl>;
 }
 
 function ShoesModal({ closeShoesModal, shoesModal, imageUrl }: PropsTypes) {

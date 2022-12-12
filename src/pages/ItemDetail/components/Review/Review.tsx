@@ -51,7 +51,7 @@ function Review({ review, styleCode }: PropsTypes) {
         </div>
       </div>
       {review?.map(item => (
-        <div key={item?.id} className="reviewWrap">
+        <div key={item?.fullName} className="reviewWrap">
           <div>
             {'★'.repeat(item.starScore)}
             {'☆'.repeat(5 - item.starScore)}

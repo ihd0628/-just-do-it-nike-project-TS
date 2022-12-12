@@ -1,17 +1,22 @@
 import React from 'react';
+import { ImageUrl } from '../../types/ItemDetailTypes';
 import './ShoesImgs.scss';
 
 interface PropsTypes {
-  imageUrl: Array<string>;
+  imageUrl: Array<ImageUrl>;
 }
 
 function ShoesImgs({ imageUrl }: PropsTypes) {
   return (
     <ul className="shoesImgs">
-      {imageUrl?.map(e => (
-        <li className="shoesProduct" key={e}>
+      {imageUrl?.map(imageInfo => (
+        <li className="shoesProduct" key={imageInfo.product_id}>
           <div className="ShoesImgBox">
-            <img src={e} alt="나이키" className="shoesBigImg" />
+            <img
+              src={imageInfo.imageUrl}
+              alt="나이키"
+              className="shoesBigImg"
+            />
           </div>
         </li>
       ))}
