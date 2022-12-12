@@ -1,9 +1,35 @@
-# 0. 리팩토링 계획
+# Nike Clone
 
-0. 리팩토링 중 블로커
+# 0. 기술스택
 
-- ItemList 컴포넌트 : 쿼리스트링 클래스 작성 중 타입스크립트에서의 클래스 export 및 import
-- ContentList 컴포넌트 : map을 이용한 컴포넌트 반복 리턴 후 렌더링하는 함수 작성 시 리턴값 및 리턴방법
+<ul>
+  <li>Front-END
+    <ul>
+      <li>React</li> 
+      <li>React Router</li> 
+      <li>TypeScript</li>
+      <li>Redux</li> 
+      <li>SCSS</li>
+    </ul>
+  </li>
+  <!-- <li>BACK-END
+    <ul>
+      <li>Node.js</li>
+      <li>Express</li>
+      <li>JSON WEB TOKEN</li>
+      <li>Bcrypt</li>
+      <li>Mysql</li>
+      <li>AWS</li>
+    </ul>
+  </li> -->
+  <!-- <li>공통
+    <ul>
+      <li>Rest API</li>
+    </ul>
+  </li> -->
+</ul>
+
+# 1. 리팩토링 계획
 
 1. 타입스크립트 적용
 
@@ -14,102 +40,11 @@
 - [x] WishList 컴포넌트
 - [x] Cart 컴포넌트
 
-# 1. 기술스택 & 라이브러리
+2. Redux 적용
 
-<ul>
-  <li>Front-END
-    <ul>
-      <li>React.js</li>
-      <li>SCSS</li>
-    </ul>
-  </li>
-  <li>BACK-END
-    <ul>
-      <li>Node.js</li>
-      <li>Express</li>
-      <li>JSON WEB TOKEN</li>
-      <li>Bcrypt</li>
-      <li>Mysql</li>
-      <li>AWS</li>
-    </ul>
-  </li>
-  <li>공통
-    <ul>
-      <li>RestFul API</li>
-    </ul>
-  </li>
-</ul>
+- [] ItemList 상품목록 Redux를 이용하여 state로 관리
 
-### 제공하는 메인 서비스를 소개해주세요
-
-<aside>
-👉 나이키의 다양한 상품 소개
-👉 장바구니 및 위시리스트를 통해 구매 편의성 증가
-
-</aside>
-
-# 4. 필수 구현 사항
-
----
-
-### 이번 프로젝트 기본 구현사항
-
-<aside>
-
-0. 메뉴 Nav Bar
-
-1. 사용자 회원가입 페이지 구현
-
-2. 사용자 로그인 페이지 구현(비회원 로그인 X)
-
-3. 메인페이지 구현
-
-4. 상품 목록 페이지 구현
-
-5. 상품 상세 페이지 구현
-
-6. 장바구니 페이지
-
-</aside>
-
-### 기본 기능 구현 후 추가 구현 사항
-
-<aside>
-👉 0. 위시리스트
-
-1. 상품상세 페이지에서 위시리스트에 추가 가능
-2. 장바구니에서 위시리시트에 추가 가능
-
-</aside>
-
-# 6. 변경 사항
-
----
-
-### 현재 서비스에서 변경되는 점
-
-<aside>
-👉 1. 구매 프로세스 미흡. -> 재고관리는 가능하나 주문 및 매출관련 관리 기능 부재.
-
-</aside>
-
-# 7. 프로젝트 진행 간 시 주의사항
-
-존중과 배려와 즐거움.
-
-결과물에 너무 집착하지 말자.
-
-배운점을 어떻게 활용할지에 집중하자.
-
-내 코드를 어떻게 더 잘 짤지에 대해 집중. (양질의 코드를 만들자)
-
-코드리뷰는 너무 한방에 하지 말고 작은 단위로(PR 잘 활용)
-
-모든 멘토님께 질문하자.
-
-외부 라이브러리는 사용하지 않는다.(직접 구현)
-
-# 8. Reference
+# 2. Reference
 
 이 프로젝트는 나이키 사이트를 참조하여 학습목적으로 만들었습니다.
 
