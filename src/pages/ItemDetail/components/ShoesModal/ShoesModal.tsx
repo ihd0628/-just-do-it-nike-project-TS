@@ -1,15 +1,14 @@
 import React from 'react';
 import './ShoesModal.scss';
 import ShoesImgs from '../ShoesImgs/ShoesImgs';
-import { ImageUrl } from '../../types/ItemDetailTypes';
 
 interface PropsTypes {
   closeShoesModal: () => void;
   shoesModal: boolean;
-  imageUrl: Array<ImageUrl>;
+  imageURL: Array<string>;
 }
 
-function ShoesModal({ closeShoesModal, shoesModal, imageUrl }: PropsTypes) {
+function ShoesModal({ closeShoesModal, shoesModal, imageURL }: PropsTypes) {
   return (
     <div>
       {shoesModal && (
@@ -19,7 +18,7 @@ function ShoesModal({ closeShoesModal, shoesModal, imageUrl }: PropsTypes) {
             onClick={closeShoesModal}
             className="overlayWrap"
           >
-            <ShoesImgs imageUrl={imageUrl} />
+            <ShoesImgs imageURL={imageURL} />
           </div>
         </div>
       )}

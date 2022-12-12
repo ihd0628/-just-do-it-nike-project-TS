@@ -18,6 +18,7 @@ function ShoesSize({
   setProductOptionId,
   product,
 }: PropsTypes) {
+  console.log('슈사이즈렌더링!');
   return (
     <div className="shoesSize">
       <ul className="shoesSizeWrap">

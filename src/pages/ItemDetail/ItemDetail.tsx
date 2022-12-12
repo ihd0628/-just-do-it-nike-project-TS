@@ -21,7 +21,7 @@ function ItemDetail() {
   const [reviewOpen, setReviewOpen] = useState(false);
   const [quantity, setquantity] = useState(1);
   const [productOptionId, setProductOptionId] = useState(0);
-  const [isWished, setIsWished] = useState({});
+  const [isWished, setIsWished] = useState<boolean>();
 
   // const iswished = product.isWished;
   const token = localStorage.getItem('token');
@@ -31,8 +31,6 @@ function ItemDetail() {
 
   const [selectedId, setSelectedId] = useState('');
   // const { stock } = product;
-
-  console.log('product : ', product);
 
   useEffect(() => {
     setProduct(PRODUCT_MOCK[0]);
@@ -45,15 +43,15 @@ function ItemDetail() {
     })
       .then(res => res.json())
       .then(data => {
-        setIsWished(data[0].isWished);
-        setProduct(data[0]);
+        setIsWished(data.isWished);
+        setProduct(data);
       });
   }, []);
 
   useEffect(() => {
-    const isWishedForSet = product?.isWished || '';
+    const isWishedForSet = product?.isWished;
     setIsWished(isWishedForSet);
-  });
+  }, []);
 
   const orderSubmit = () => {
     fetch(`${IP_CONFIG}/orders`, {
@@ -147,7 +145,9 @@ function ItemDetail() {
       .then(result => {
         if (result.message === 'ALREADY_EXIST') {
           alert('이미 wishList에 있는 항목입니다.');
-        } else setIsWished(true);
+        } else {
+          setIsWished(prev => !prev);
+        }
       });
   };
 
@@ -157,13 +157,13 @@ function ItemDetail() {
       <ShoesModal
         closeShoesModal={closeShoesModal}
         shoesModal={shoesModal}
-        imageUrl={product?.imageUrl}
+        imageURL={product?.imageURL}
       />
 
       <article className="detailSection">
         <div className="detailContent">
           <DetailImgs
-            imageUrl={product?.imageUrl}
+            imageURL={product?.imageURL}
             openShoesModal={openShoesModal}
           />
         </div>

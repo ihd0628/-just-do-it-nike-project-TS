@@ -1,7 +1,3 @@
-export interface ImageUrl {
-  imageUrl: string;
-  product_id: number;
-}
 export interface ThumbailInfo {
   id: string;
   thumbnail: string;
@@ -21,7 +17,7 @@ export interface ReviewInfo {
 export interface Product {
   isWished: boolean;
   productOptions: Array<ProductOption>;
-  imageUrl: Array<ImageUrl>;
+  imageURL: Array<string>;
   brandName: string;
   color: string;
   review: Array<ReviewInfo>;
@@ -45,7 +41,7 @@ export interface Product {
 export const productSample: Product = {
   isWished: false,
   productOptions: [],
-  imageUrl: [],
+  imageURL: [],
   discountPrice: 'string',
   retailPrice: 'string',
   brandName: 'string',

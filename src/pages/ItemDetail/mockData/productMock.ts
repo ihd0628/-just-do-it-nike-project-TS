@@ -18,37 +18,13 @@ const PRODUCT_MOCK = [
           'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-101_1.jpg',
       },
     ],
-    imageUrl: [
-      {
-        imageUrl:
-          'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_1.jpg',
-        product_id: 1,
-      },
-      {
-        imageUrl:
-          'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_2.jpg',
-        product_id: 2,
-      },
-      {
-        imageUrl:
-          'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_3.jpg',
-        product_id: 3,
-      },
-      {
-        imageUrl:
-          'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_4.jpg',
-        product_id: 4,
-      },
-      {
-        imageUrl:
-          'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_5.jpg',
-        product_id: 5,
-      },
-      {
-        imageUrl:
-          'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_6.jpg',
-        product_id: 6,
-      },
+    imageURL: [
+      'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_1.jpg',
+      'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_2.jpg',
+      'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_3.jpg',
+      'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_4.jpg',
+      'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_5.jpg',
+      'https://raw.githubusercontent.com/whrod/1stprojectImages/main/921826-001_6.jpg',
     ],
     productName: '나이키 에어맥스 97',
     productOptions: [
