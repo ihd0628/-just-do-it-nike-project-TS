@@ -25,8 +25,7 @@ function ItemList() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const itemListCount = useRef<HTMLDivElement>(null);
-
-  const setStatesFromQueryString = () => {
+  useEffect(() => {
     const filterOptions = getFilterOptionsFromQueryList(searchParams);
     if (filterOptions.limit.length !== 0) {
       setSelectedSize([...filterOptions.size]);
@@ -36,9 +35,6 @@ function ItemList() {
       setLimit(filterOptions.limit[0]);
       setSortStandard(filterOptions.sort[0]);
     }
-  };
-  useEffect(() => {
-    setStatesFromQueryString();
   }, []);
 
   useEffect(() => {
