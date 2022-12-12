@@ -1,4 +1,4 @@
-export const IP_CONFIG = 'http://10.58.52.62:8000';
+export const IP_CONFIG = 'http://127.0.0.1:8000';
 
 export const LOGIN_CONFIG = {
   api: `http://${IP_CONFIG}/users/signin`,
