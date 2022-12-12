@@ -9,47 +9,7 @@ import ShoesColor from './components/ShoesColor/ShoesColor';
 import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
 import { IP_CONFIG } from '../../config';
-
-interface ThumbailInfo {
-  id: string;
-  thumbnail: string;
-}
-interface ProductOption {
-  size: string;
-  stock: number;
-  productOptionId: string;
-}
-interface ReviewInfo {
-  id: number;
-  starScore: number;
-  fullName: string;
-  createdAt: string;
-  content: string;
-}
-
-interface Product {
-  isWished: boolean;
-  productOptions: Array<ProductOption>;
-  imageURL: Array<string>;
-  brandName: string;
-  color: string;
-  review: Array<ReviewInfo>;
-  getThumbnail: Array<ThumbailInfo>;
-  description: string;
-  cartId: number;
-  userId: number;
-  styleCode: string;
-  quantity: number;
-  productOptionId: number;
-  productId: number;
-  productName: string;
-  sizeId: number;
-  size: string;
-  stock: number;
-  retailPrice: string;
-  discountPrice: string;
-  thumbnail: string;
-}
+import { Product } from './types/ItemDetailTypes';
 
 const productSample: Product = {
   isWished: false,

@@ -1,13 +1,6 @@
 import React from 'react';
+import { ReviewInfo } from '../../types/ItemDetailTypes';
 import './Review.scss';
-
-interface ReviewInfo {
-  id: number;
-  starScore: number;
-  fullName: string;
-  createdAt: string;
-  content: string;
-}
 
 interface PropsTypes {
   review: Array<ReviewInfo>;
