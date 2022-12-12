@@ -96,7 +96,6 @@ function ItemDetail() {
   // const { stock } = product;
 
   console.log('product : ', product);
-  console.log('product : ', product);
 
   useEffect(() => {
     fetch(`${IP_CONFIG}/product/${productId}`, {

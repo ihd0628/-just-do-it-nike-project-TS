@@ -26,7 +26,7 @@ function ItemList() {
 
   const itemListCount = useRef<HTMLDivElement>(null);
 
-  const setStatesFormQueryString = () => {
+  const setStatesFromQueryString = () => {
     const filterOptions = getFilterOptionsFromQueryList(searchParams);
     if (filterOptions.limit.length !== 0) {
       setSelectedSize([...filterOptions.size]);
@@ -37,9 +37,8 @@ function ItemList() {
       setSortStandard(filterOptions.sort[0]);
     }
   };
-
   useEffect(() => {
-    setStatesFormQueryString();
+    setStatesFromQueryString();
   }, []);
 
   useEffect(() => {
