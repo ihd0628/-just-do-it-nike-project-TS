@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './ItemDetail.scss';
 import { useParams } from 'react-router-dom';
 import ShoesSize from './components/ShoesSize/ShoesSize';
-import DetailImgs from './components/DetailImgs/DetailImgs';
 import Counter from './components/Counter/Counter';
 import Modal from './components/Modal/Modal';
 import ShoesColor from './components/ShoesColor/ShoesColor';
@@ -10,6 +9,7 @@ import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
 import { IP_CONFIG } from '../../config';
 import { Product, productSample } from './types/ItemDetailTypes';
+import DetailContet from './components/detailContent/DetailContet';
 // import PRODUCT_MOCK from './mockData/productMock';
 
 function ItemDetail() {
@@ -158,12 +158,7 @@ function ItemDetail() {
       />
 
       <article className="detailSection">
-        <div className="detailContent">
-          <DetailImgs
-            imageURL={product?.imageURL}
-            openShoesModal={openShoesModal}
-          />
-        </div>
+        <DetailContet product={product} openShoesModal={openShoesModal} />
 
         <div className="detailInfo">
           <div className="detailOption">
