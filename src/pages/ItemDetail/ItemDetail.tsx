@@ -15,7 +15,6 @@ import PRODUCT_MOCK from './mockData/productMock';
 function ItemDetail() {
   const [modal, setModal] = useState(false);
   const [product, setProduct] = useState<Product>(productSample);
-  // const [result, setResult] = useState([]);
   const [shooseSize, setShooseSize] = useState('');
   const [shoesModal, setShoesModal] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -23,14 +22,12 @@ function ItemDetail() {
   const [productOptionId, setProductOptionId] = useState(0);
   const [isWished, setIsWished] = useState<boolean>();
 
-  // const iswished = product.isWished;
   const token = localStorage.getItem('token');
   const [accessToken] = useState(token);
   const params = useParams();
   const { productId } = params;
 
   const [selectedId, setSelectedId] = useState('');
-  // const { stock } = product;
 
   useEffect(() => {
     setProduct(PRODUCT_MOCK[0]);
