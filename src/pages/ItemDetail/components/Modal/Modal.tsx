@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IP_CONFIG } from '../../../../config';
-import {
-  ProductOption,
-  ReviewInfo,
-  ThumbailInfo,
-} from '../../types/ItemDetailTypes';
+import { Product, productSample } from '../../types/ItemDetailTypes';
 
 import './Modal.scss';
 import ModalContentBox from './ModalContentBox/ModalContentBox';
@@ -14,35 +10,11 @@ interface PropsTypes {
   closeModal: () => void;
 }
 
-interface Product {
-  isWished: boolean;
-  productOptions: Array<ProductOption>;
-  imageURL: Array<string>;
-  brandName: string;
-  color: string;
-  review: Array<ReviewInfo>;
-  getThumbnail: Array<ThumbailInfo>;
-  description: string;
-  cartId: number;
-  userId: number;
-  styleCode: string;
-  quantity: number;
-  productOptionId: number;
-  productId: number;
-  productName: string;
-  sizeId: number;
-  size: string;
-  stock: number;
-  retailPrice: string;
-  discountPrice: string;
-  thumbnail: string;
-}
-
 function Modal({ closeModal }: PropsTypes) {
   let totalPrice = 0;
 
   const accessToken = localStorage.getItem('token');
-  const [result, setResult] = useState<Array<Product>>([]);
+  const [result, setResult] = useState<Array<Product>>([productSample]);
   useEffect(() => {
     fetch(`${IP_CONFIG}/carts`, {
       method: 'GET',

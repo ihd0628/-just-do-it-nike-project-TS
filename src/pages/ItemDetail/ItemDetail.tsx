@@ -10,7 +10,7 @@ import ShoesModal from './components/ShoesModal/ShoesModal';
 import Review from './components/Review/Review';
 import { IP_CONFIG } from '../../config';
 import { Product, productSample } from './types/ItemDetailTypes';
-import PRODUCT_MOCK from './mockData/productMock';
+// import PRODUCT_MOCK from './mockData/productMock';
 
 function ItemDetail() {
   const [modal, setModal] = useState(false);
@@ -30,7 +30,7 @@ function ItemDetail() {
   const [selectedId, setSelectedId] = useState('');
 
   useEffect(() => {
-    setProduct(PRODUCT_MOCK[0]);
+    // setProduct(PRODUCT_MOCK[0]);
 
     fetch(`${IP_CONFIG}/product/${productId}`, {
       method: 'GET',
@@ -38,7 +38,7 @@ function ItemDetail() {
         authorization: localStorage?.getItem('token') || '',
       },
     })
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         setIsWished(data.isWished);
         setProduct(data);
