@@ -55,8 +55,8 @@ function ItemList() {
         .then(result => {
           setProducts(result.list);
         });
-    } catch (e: any) {
-      console.log(e);
+    } catch (error: any) {
+      console.log(error);
     }
   }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
 
