@@ -1,6 +1,6 @@
 import React from 'react';
 import './ShoesModal.scss';
-import ShoesImgs from '../DetailInfo/components/ShoesImgs/ShoesImgs';
+import ShoesImgs from './components/ShoesImgs';
 
 interface PropsTypes {
   shoesModal: boolean;

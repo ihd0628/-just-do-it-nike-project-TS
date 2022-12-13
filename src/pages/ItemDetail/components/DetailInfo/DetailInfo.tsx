@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { IP_CONFIG } from '../../../../config';
+import {
+  ALREADY_EXIST_MESSAGE,
+  OVERFLOW_HIDDEN,
+  TOKEN,
+} from '../../constantData/itemDetailConstant';
 import { Product } from '../../types/ItemDetailTypes';
 import Counter from './components/Counter/Counter';
 import Review from './components/Review/Review';
@@ -46,7 +51,7 @@ function DetailInfo({
     })
       .then(response => response.json())
       .then(result => {
-        if (result.message === 'ALREADY_EXIST') {
+        if (result.message === ALREADY_EXIST_MESSAGE) {
           alert('이미 wishList에 있는 항목입니다.');
         } else {
           setIsWished(prev => !prev);
@@ -62,7 +67,7 @@ function DetailInfo({
     fetch(`${IP_CONFIG}/orders`, {
       method: 'POST',
       headers: {
-        authorization: localStorage?.getItem('token') || '',
+        authorization: localStorage?.getItem(TOKEN) || '',
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
@@ -98,7 +103,7 @@ function DetailInfo({
       alert('size를 선택하세요');
     } else {
       setModal(prev => !prev);
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = OVERFLOW_HIDDEN;
       window.scroll(0, 165);
       fetch(`${IP_CONFIG}/carts`, {
         method: 'POST',

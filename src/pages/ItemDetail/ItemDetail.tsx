@@ -8,6 +8,11 @@ import { Product, productSample } from './types/ItemDetailTypes';
 import DetailContet from './components/DetailContent/DetailContet';
 // import PRODUCT_MOCK from './mockData/productMock';
 import DetailInfo from './components/DetailInfo/DetailInfo';
+import {
+  OVERFLOW_HIDDEN,
+  OVERFLOW_UNSET,
+  TOKEN,
+} from './constantData/itemDetailConstant';
 
 function ItemDetail() {
   const [modal, setModal] = useState(false);
@@ -23,7 +28,7 @@ function ItemDetail() {
     fetch(`${IP_CONFIG}/product/${productId}`, {
       method: 'GET',
       headers: {
-        authorization: localStorage?.getItem('token') || '',
+        authorization: localStorage?.getItem(TOKEN) || '',
       },
     })
       .then(response => response.json())
@@ -35,12 +40,14 @@ function ItemDetail() {
 
   const shoesModalController = () => {
     setShoesModal(prev => !prev);
-    document.body.style.overflow = shoesModal ? 'unset' : 'hidden';
+    document.body.style.overflow = shoesModal
+      ? OVERFLOW_UNSET
+      : OVERFLOW_HIDDEN;
   };
 
   const closeModal = () => {
     setModal(prev => !prev);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = OVERFLOW_UNSET;
   };
 
   return (

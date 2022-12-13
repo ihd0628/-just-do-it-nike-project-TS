@@ -12,7 +12,7 @@ const {
   GetQueryString,
   getFilterOptionsFromQueryList,
   getKeyByValue,
-} = require('./method/itemListMethod');
+} = require('./function/itemListMethod');
 
 function ItemList() {
   const [products, setProducts] = useState<Array<ProductTypes>>([]);
