@@ -7,7 +7,7 @@ import { IP_CONFIG } from '../../../config';
 interface CartOpt {
   brandId: number;
   brandName: string;
-  images: Array<{ productId: number; imageUrl: string }>;
+  images: Array<string>;
   productOptions: Array<{
     productOptionId: number;
     size: string;
@@ -18,7 +18,7 @@ interface CartOpt {
 const cartOptSample = {
   brandId: 2,
   brandName: '나이키 스포츠웨어',
-  images: [],
+  images: [''],
   productOptions: [],
 };
 

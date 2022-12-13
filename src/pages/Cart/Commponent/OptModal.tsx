@@ -5,7 +5,7 @@ import './OptModal.scss';
 interface CartOpt {
   brandId: number;
   brandName: string;
-  images: Array<{ productId: number; imageUrl: string }>;
+  images: Array<string>;
   productOptions: Array<{
     productOptionId: number;
     size: string;
@@ -124,12 +124,7 @@ function OptModal({
         {cartOptItems &&
           cartOptItems.images.map(image => {
             return (
-              <img
-                key={image.imageUrl}
-                className="optImg"
-                alt="신발"
-                src={image.imageUrl}
-              />
+              <img key={image} className="optImg" alt="신발" src={image} />
             );
           })}
       </section>
