@@ -4,15 +4,15 @@ import DetailImgs from './components/DetailImgs';
 
 interface PropsTypes {
   product: Product;
-  openShoesModal: () => void;
+  shoesModalController: () => void;
 }
 
-function DetailContet({ product, openShoesModal }: PropsTypes) {
+function DetailContet({ product, shoesModalController }: PropsTypes) {
   return (
     <div className="detailContent">
       <DetailImgs
         imageURL={product?.imageURL}
-        openShoesModal={openShoesModal}
+        shoesModalController={shoesModalController}
       />
     </div>
   );

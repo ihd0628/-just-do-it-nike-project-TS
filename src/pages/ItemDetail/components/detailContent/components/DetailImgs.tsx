@@ -3,10 +3,10 @@ import './DetailImgs.scss';
 
 interface PropsTypes {
   imageURL: Array<string>;
-  openShoesModal: () => void;
+  shoesModalController: () => void;
 }
 
-function DetailImgs({ imageURL, openShoesModal }: PropsTypes) {
+function DetailImgs({ imageURL, shoesModalController }: PropsTypes) {
   return (
     <ul className="detailImgs">
       {imageURL?.map(imageInfo => (
@@ -17,7 +17,7 @@ function DetailImgs({ imageURL, openShoesModal }: PropsTypes) {
               src={imageInfo}
               alt="나이키"
               className="shoesImg"
-              onClick={openShoesModal}
+              onClick={shoesModalController}
             />
           </div>
         </li>

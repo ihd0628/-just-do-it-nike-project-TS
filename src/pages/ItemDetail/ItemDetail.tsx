@@ -38,13 +38,9 @@ function ItemDetail() {
     setIsWished(isWishedForSet);
   }, []);
 
-  const openShoesModal = () => {
+  const shoesModalController = () => {
     setShoesModal(prev => !prev);
-    document.body.style.overflow = 'hidden';
-  };
-  const closeShoesModal = () => {
-    setShoesModal(prev => !prev);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = shoesModal ? 'unset' : 'hidden';
   };
 
   const closeModal = () => {
@@ -56,13 +52,16 @@ function ItemDetail() {
     <section className="itemDetail">
       {modal && <Modal closeModal={closeModal} />}
       <ShoesModal
-        closeShoesModal={closeShoesModal}
+        shoesModalController={shoesModalController}
         shoesModal={shoesModal}
         imageURL={product?.imageURL}
       />
 
       <article className="detailSection">
-        <DetailContet product={product} openShoesModal={openShoesModal} />
+        <DetailContet
+          product={product}
+          shoesModalController={shoesModalController}
+        />
         <DetailInfo
           product={product}
           accessToken={accessToken}
