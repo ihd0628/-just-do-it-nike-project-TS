@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReviewInfo } from '../../types/ItemDetailTypes';
+import { ReviewInfo } from '../../../../types/ItemDetailTypes';
 import './Review.scss';
 
 interface PropsTypes {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Product, ProductOption } from '../../../types/ItemDetailTypes';
+import { Product, ProductOption } from '../../../../../types/ItemDetailTypes';
 import './SizeButton.scss';
 
 interface PropsTypes {

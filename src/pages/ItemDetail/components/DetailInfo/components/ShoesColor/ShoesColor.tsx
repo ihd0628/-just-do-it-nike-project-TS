@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThumbailInfo } from '../../types/ItemDetailTypes';
+import { ThumbailInfo } from '../../../../types/ItemDetailTypes';
 
 interface PropsTyeps {
   getThumbnail: Array<ThumbailInfo>;

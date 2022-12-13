@@ -1,5 +1,5 @@
 import React from 'react';
-import { Product, ProductOption } from '../../types/ItemDetailTypes';
+import { Product, ProductOption } from '../../../../types/ItemDetailTypes';
 import SizeButton from './components/SizeButton';
 import './ShoesSize.scss';
 
@@ -18,7 +18,6 @@ function ShoesSize({
   setProductOptionId,
   product,
 }: PropsTypes) {
-  console.log('슈사이즈렌더링!');
   return (
     <div className="shoesSize">
       <ul className="shoesSizeWrap">

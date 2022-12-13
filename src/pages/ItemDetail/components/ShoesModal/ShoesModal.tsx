@@ -1,6 +1,6 @@
 import React from 'react';
 import './ShoesModal.scss';
-import ShoesImgs from '../ShoesImgs/ShoesImgs';
+import ShoesImgs from '../DetailInfo/components/ShoesImgs/ShoesImgs';
 
 interface PropsTypes {
   closeShoesModal: () => void;
