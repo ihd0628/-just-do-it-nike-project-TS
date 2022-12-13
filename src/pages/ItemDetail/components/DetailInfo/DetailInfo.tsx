@@ -191,7 +191,9 @@ function DetailInfo({
             <button type="button" className="itemWish" onClick={wishSubmit}>
               <div className="text">위시리스트</div>
               {accessToken && (
-                <div className="heart">{isWished === true ? '♥️' : '♡'}</div>
+                <div className="heart">
+                  {product.isWished || isWished ? '♥️' : '♡'}
+                </div>
               )}
             </button>
           </div>

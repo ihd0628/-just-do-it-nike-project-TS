@@ -33,11 +33,6 @@ function ItemDetail() {
       });
   }, []);
 
-  useEffect(() => {
-    const isWishedForSet = product?.isWished;
-    setIsWished(isWishedForSet);
-  }, []);
-
   const shoesModalController = () => {
     setShoesModal(prev => !prev);
     document.body.style.overflow = shoesModal ? 'unset' : 'hidden';
