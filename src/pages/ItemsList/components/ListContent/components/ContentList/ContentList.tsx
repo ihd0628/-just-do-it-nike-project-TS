@@ -11,8 +11,6 @@ interface PropsTypes {
 
 function ContentList({ itemListCount }: PropsTypes) {
   const products = useSelector((state: RootState) => state.itemList);
-  console.log(products);
-  console.log('컨텐츠 리스트 렌더링!');
 
   return (
     <div className="contentItems">
