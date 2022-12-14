@@ -28,7 +28,6 @@ function ItemList() {
   const itemListCount = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const filterOptns = getFilterOptionsFromQueryList(searchParams);
-    console.log(filterOptns);
     if (filterOptns.size) setSelectedSize([...filterOptns.size]);
     if (filterOptns.color) setSelectedColor([...filterOptns.color]);
     if (filterOptns.checkList) setCheckList({ ...filterOptns.checkList });

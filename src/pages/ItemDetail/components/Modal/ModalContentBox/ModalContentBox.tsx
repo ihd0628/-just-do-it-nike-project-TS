@@ -32,9 +32,7 @@ function ModalContentBox({
       headers: {
         authorization: localStorage.getItem('token') || '',
       },
-    })
-      .then(response => response.json())
-      .then(result => console.log(result));
+    }).then(response => response.json());
   };
 
   return (

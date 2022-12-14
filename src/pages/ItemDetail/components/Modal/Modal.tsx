@@ -24,7 +24,6 @@ function Modal({ closeModal }: PropsTypes) {
     })
       .then(response => response.json())
       .then(data => setResult(data.result));
-    // .then(result => console.log('cart result : ', result));
   }, [result]);
 
   for (let i = 0; i < result.length; i += 1) {
