@@ -7,7 +7,7 @@ import ListContent from './components/ListContent/ListContent';
 import ListHeader from './components/listHeader/ListHeader';
 
 import './itemList.scss';
-import { CheckList, ProductTypes } from './types/ItemListTypes';
+import { CheckList } from './types/ItemListTypes';
 import { set } from '../../store';
 
 const {
@@ -17,7 +17,6 @@ const {
 } = require('./function/itemListMethod');
 
 function ItemList() {
-  const [products, setProducts] = useState<Array<ProductTypes>>([]);
   const [sortStandard, setSortStandard] = useState<string>('신상품순');
   const [filterHider, setFilterHider] = useState<boolean>(true);
   const [checkList, setCheckList] = useState<CheckList>({});
@@ -57,7 +56,6 @@ function ItemList() {
       fetch(`${IP_CONFIG}/products?${queryString}`)
         .then(response => response.json())
         .then(result => {
-          setProducts(result.list);
           dispatch(set(result.list));
         });
     } catch (error: any) {
@@ -72,7 +70,6 @@ function ItemList() {
         setFilterHider={setFilterHider}
         sortStandard={sortStandard}
         setSortStandard={setSortStandard}
-        products={products}
       />
       <div className="itemListMain">
         <FilterBar
@@ -86,7 +83,6 @@ function ItemList() {
         />
 
         <ListContent
-          products={products}
           filterHider={filterHider}
           setOffset={setOffset}
           setLimit={setLimit}

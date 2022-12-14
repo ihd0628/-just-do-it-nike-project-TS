@@ -1,12 +1,13 @@
 import React from 'react';
 import './contentList.scss';
+import { useSelector } from 'react-redux';
 import AdvertiseItem from './components/AdvertiseItem/AdvertiseItem';
 import ContentItem from './components/ContentItem/ContentItem';
 import { ProductTypes } from '../../../../types/ItemListTypes';
 import CONTENTS_MOCK from './mockData/contentMock';
+import { RootState } from '../../../../../../store';
 
 interface PropsTypes {
-  products: Array<ProductTypes>;
   itemListCount: React.RefObject<HTMLDivElement>;
 }
 const productViewer = (productsInput: Array<ProductTypes>): JSX.Element[] => {
@@ -38,7 +39,8 @@ const productViewer = (productsInput: Array<ProductTypes>): JSX.Element[] => {
   );
 };
 
-function ContentList({ products, itemListCount }: PropsTypes) {
+function ContentList({ itemListCount }: PropsTypes) {
+  const products = useSelector((state: RootState) => state);
   return (
     <div className="contentItems">
       <div className="contentItemContainor" ref={itemListCount}>

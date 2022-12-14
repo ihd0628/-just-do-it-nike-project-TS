@@ -1,13 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../../store';
 import './contentNext.scss';
 
 interface PropsTypes {
-  products: object[];
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function ContentNext({ products, setOffset, setLimit }: PropsTypes) {
+function ContentNext({ setOffset, setLimit }: PropsTypes) {
+  const products = useSelector((state: RootState) => state);
+
   const offset = products.length !== undefined ? products.length : 0;
   const nextItemGetter = () => {
     setOffset(0);

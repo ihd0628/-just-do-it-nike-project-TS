@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { RootState } from '../../../../store';
 import ModalForItemList from './components/Modal/ModalForItemList';
 import ModarlPortalForItemList from './components/Modal/PortalForItemList';
 import './listHeader.scss';
@@ -12,7 +13,6 @@ interface PropsTypes {
   setFilterHider: React.Dispatch<React.SetStateAction<boolean>>;
   sortStandard: string;
   setSortStandard: React.Dispatch<React.SetStateAction<string>>;
-  products: object[];
 }
 
 function ListHeader({
@@ -20,9 +20,9 @@ function ListHeader({
   setFilterHider,
   sortStandard,
   setSortStandard,
-  products,
 }: PropsTypes) {
   const [sortSetter, setSortSetter] = useState<boolean>(false);
+  const products = useSelector((state: RootState) => state);
 
   const filterController = () => {
     setFilterHider(prev => !prev);
@@ -37,8 +37,6 @@ function ListHeader({
       setSortStandard(newStandardValue);
   };
 
-  const reduxState = useSelector(state => state);
-  console.log('reduxState : ', reduxState);
   return (
     <header className="listHeader">
       <div className="headerLeft">

@@ -2,11 +2,9 @@ import React from 'react';
 import ContentHeader from './components/ContentHeader/ContentHeader';
 import ContentNext from './components/ContentNext/ContentNext';
 import ContentList from './components/ContentList/ContentList';
-import { ProductTypes } from '../../types/ItemListTypes';
 import './listContent.scss';
 
 interface PropsTypes {
-  products: Array<ProductTypes>;
   filterHider: boolean;
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
@@ -14,7 +12,6 @@ interface PropsTypes {
 }
 
 function ListContent({
-  products,
   filterHider,
   setOffset,
   setLimit,
@@ -23,13 +20,9 @@ function ListContent({
   return (
     <div className="listContent" style={!filterHider ? { marginLeft: 0 } : {}}>
       <ContentHeader />
-      <ContentList products={products} itemListCount={itemListCount} />
+      <ContentList itemListCount={itemListCount} />
 
-      <ContentNext
-        products={products}
-        setOffset={setOffset}
-        setLimit={setLimit}
-      />
+      <ContentNext setOffset={setOffset} setLimit={setLimit} />
     </div>
   );
 }

@@ -1,19 +1,6 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-export interface ProductTypes {
-  id: number;
-  styleCode?: string;
-  thumbnail: string;
-  productName: string;
-  description: string;
-  brandName: string;
-  color: string;
-  discountPrice: number;
-  retailPrice: number;
-  releaseDate?: string;
-}
-
-const initialState: Array<ProductTypes> = [
+const initialState = [
   {
     id: 0,
     styleCode: 'string',
@@ -39,8 +26,8 @@ const itemList = createSlice({
 });
 
 const store = configureStore({ reducer: itemList.reducer });
-console.log(itemList.actions);
 
 export const { set } = itemList.actions;
 
+export type RootState = ReturnType<typeof store.getState>;
 export default store;
