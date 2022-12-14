@@ -2,14 +2,19 @@
 
 # 0. 기술스택
 
-<ul>Front-END
+### Front-END
+
+<ul>
     <li>React</li> 
     <li>React Router</li> 
     <li>TypeScript</li>
     <li>Redux</li> 
     <li>SCSS</li>
 </ul>
-<ul>Common
+
+### Common
+
+<ul>
     <li>HTTP API</li> 
 </ul>
   <!-- <li>BACK-END
