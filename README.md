@@ -2,16 +2,16 @@
 
 # 0. 기술스택
 
-<ul>
-  <li>Front-END
-    <ul>
-      <li>React</li> 
-      <li>React Router</li> 
-      <li>TypeScript</li>
-      <li>Redux</li> 
-      <li>SCSS</li>
-    </ul>
-  </li>
+<ul>Front-END
+    <li>React</li> 
+    <li>React Router</li> 
+    <li>TypeScript</li>
+    <li>Redux</li> 
+    <li>SCSS</li>
+</ul>
+<ul>Common
+    <li>HTTP API</li> 
+</ul>
   <!-- <li>BACK-END
     <ul>
       <li>Node.js</li>
@@ -27,22 +27,11 @@
       <li>Rest API</li>
     </ul>
   </li> -->
-</ul>
 
-# 1. 리팩토링 계획
+# 1. 주요 기능
 
-1. 타입스크립트 적용
-
-- [x] ItemList 컴포넌트
-- [x] ItemDetail 컴포넌트
-- [x] Main 컴포넌트
-- [x] SignUp 컴포넌트
-- [x] WishList 컴포넌트
-- [x] Cart 컴포넌트
-
-2. Redux 적용
-
-- [] ItemList 상품목록 Redux를 이용하여 state로 관리
+- ItemList 필터링
+- ItemList URL 조건에 맞게 리스트업
 
 # 2. Reference
 
