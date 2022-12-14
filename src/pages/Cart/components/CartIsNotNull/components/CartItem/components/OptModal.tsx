@@ -1,33 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { IP_CONFIG } from '../../../config';
+import { IP_CONFIG } from '../../../../../../../config';
+import { CartItemTypes, CartOpt } from '../../../../../types/cartTypes';
 import './OptModal.scss';
-
-interface CartOpt {
-  brandId: number;
-  brandName: string;
-  images: Array<string>;
-  productOptions: Array<{
-    productOptionId: number;
-    size: string;
-    stock: number;
-  }>;
-}
-
-interface CartItemTypes {
-  cartId: number;
-  userId: number;
-  styleCode: string;
-  quantity: number;
-  productOptionId: number;
-  productId: number;
-  productName: string;
-  sizeId: number;
-  size: string;
-  stock: number;
-  retailPrice: string;
-  discountPrice: string;
-  thumbnail: string;
-}
 
 interface PropsTypes {
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;

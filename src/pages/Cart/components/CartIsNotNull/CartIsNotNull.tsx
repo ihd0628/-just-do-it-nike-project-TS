@@ -1,24 +1,9 @@
 import React from 'react';
-import CartItem from './CartItem';
-import CartAside from './CartAside';
 import './CartIsNotNull.scss';
-import { IP_CONFIG } from '../../../config';
-
-interface CartItemTypes {
-  cartId: number;
-  userId: number;
-  styleCode: string;
-  quantity: number;
-  productOptionId: number;
-  productId: number;
-  productName: string;
-  sizeId: number;
-  size: string;
-  stock: number;
-  retailPrice: string;
-  discountPrice: string;
-  thumbnail: string;
-}
+import { IP_CONFIG } from '../../../../config';
+import CartItem from './components/CartItem/CartItem';
+import CartAside from './components/CartAside/CartAside';
+import { CartItemTypes } from '../../types/cartTypes';
 
 interface PropsTypes {
   cartItems: Array<CartItemTypes>;

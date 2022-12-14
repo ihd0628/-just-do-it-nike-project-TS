@@ -1,5 +1,5 @@
 import React from 'react';
-import { IP_CONFIG } from '../../../config';
+import { IP_CONFIG } from '../../../../../../config';
 import './CartAside.scss';
 
 interface CartItemTypes {

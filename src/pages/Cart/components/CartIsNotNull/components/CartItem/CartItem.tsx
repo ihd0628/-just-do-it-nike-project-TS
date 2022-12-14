@@ -1,19 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import OptModal from './OptModal';
+import { IP_CONFIG } from '../../../../../../config';
+import { CartItemTypes, CartOpt } from '../../../../types/cartTypes';
 import './CartItem.scss';
-import { IP_CONFIG } from '../../../config';
-
-interface CartOpt {
-  brandId: number;
-  brandName: string;
-  images: Array<string>;
-  productOptions: Array<{
-    productOptionId: number;
-    size: string;
-    stock: number;
-  }>;
-}
+import OptModal from './components/OptModal';
 
 const cartOptSample = {
   brandId: 2,
@@ -21,22 +11,6 @@ const cartOptSample = {
   images: [''],
   productOptions: [],
 };
-
-interface CartItemTypes {
-  cartId: number;
-  userId: number;
-  styleCode: string;
-  quantity: number;
-  productOptionId: number;
-  productId: number;
-  productName: string;
-  sizeId: number;
-  size: string;
-  stock: number;
-  retailPrice: string;
-  discountPrice: string;
-  thumbnail: string;
-}
 
 interface PropsTypes {
   cartItemElement: CartItemTypes;

@@ -1,24 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import CartIsNull from './Commponent/CartIsNull';
-import CartIsNotNull from './Commponent/CartIsNotNull';
+import CartIsNull from './components/CartIsNull/CartIsNull';
+import CartIsNotNull from './components/CartIsNotNull/CartIsNotNull';
 import './Cart.scss';
 import { IP_CONFIG } from '../../config';
-
-interface CartItemTypes {
-  cartId: number;
-  userId: number;
-  styleCode: string;
-  quantity: number;
-  productOptionId: number;
-  productId: number;
-  productName: string;
-  sizeId: number;
-  size: string;
-  stock: number;
-  retailPrice: string;
-  discountPrice: string;
-  thumbnail: string;
-}
+import { CartItemTypes } from './types/cartTypes';
 
 function Cart() {
   const [cartItems, setCartItems] = useState<Array<CartItemTypes>>([]);
