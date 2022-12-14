@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { IP_CONFIG } from '../../config';
 import FilterBar from './components/FilterBar/FilterBar';
@@ -7,6 +8,7 @@ import ListHeader from './components/listHeader/ListHeader';
 
 import './itemList.scss';
 import { CheckList, ProductTypes } from './types/ItemListTypes';
+import { set } from '../../store';
 
 const {
   GetQueryString,
@@ -26,6 +28,9 @@ function ItemList() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const itemListCount = useRef<HTMLDivElement>(null);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const filterOptns = getFilterOptionsFromQueryList(searchParams);
     if (filterOptns.size) setSelectedSize([...filterOptns.size]);
@@ -53,6 +58,7 @@ function ItemList() {
         .then(response => response.json())
         .then(result => {
           setProducts(result.list);
+          dispatch(set(result.list));
         });
     } catch (error: any) {
       console.log(error);

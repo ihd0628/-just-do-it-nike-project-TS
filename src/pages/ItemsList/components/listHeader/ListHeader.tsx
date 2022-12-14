@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import ModalForItemList from './components/Modal/ModalForItemList';
 import ModarlPortalForItemList from './components/Modal/PortalForItemList';
 import './listHeader.scss';
@@ -36,6 +37,8 @@ function ListHeader({
       setSortStandard(newStandardValue);
   };
 
+  const reduxState = useSelector(state => state);
+  console.log('reduxState : ', reduxState);
   return (
     <header className="listHeader">
       <div className="headerLeft">
