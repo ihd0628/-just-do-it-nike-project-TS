@@ -8,7 +8,7 @@ import ListHeader from './components/listHeader/ListHeader';
 
 import './itemList.scss';
 import { CheckList } from './types/ItemListTypes';
-import { set } from '../../store';
+import { setItemList } from '../../store';
 
 const {
   GetQueryString,
@@ -56,7 +56,7 @@ function ItemList() {
       fetch(`${IP_CONFIG}/products?${queryString}`)
         .then(response => response.json())
         .then(result => {
-          dispatch(set(result.list));
+          dispatch(setItemList(result.list));
         });
     } catch (error: any) {
       console.log(error);

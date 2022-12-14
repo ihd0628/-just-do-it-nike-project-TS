@@ -19,15 +19,19 @@ const itemList = createSlice({
   name: 'itemListReducer',
   initialState,
   reducers: {
-    set: (state, action) => {
+    setItemList: (state, action) => {
       return action.payload;
     },
   },
 });
 
-const store = configureStore({ reducer: itemList.reducer });
+const store = configureStore({
+  reducer: {
+    itemList: itemList.reducer,
+  },
+});
 
-export const { set } = itemList.actions;
+export const { setItemList } = itemList.actions;
 
 export type RootState = ReturnType<typeof store.getState>;
 export default store;

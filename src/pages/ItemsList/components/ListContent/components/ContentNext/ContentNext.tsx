@@ -9,7 +9,7 @@ interface PropsTypes {
 }
 
 function ContentNext({ setOffset, setLimit }: PropsTypes) {
-  const products = useSelector((state: RootState) => state);
+  const products = useSelector((state: RootState) => state.itemList);
 
   const offset = products.length !== undefined ? products.length : 0;
   const nextItemGetter = () => {

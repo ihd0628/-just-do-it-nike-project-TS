@@ -22,7 +22,7 @@ function ListHeader({
   setSortStandard,
 }: PropsTypes) {
   const [sortSetter, setSortSetter] = useState<boolean>(false);
-  const products = useSelector((state: RootState) => state);
+  const products = useSelector((state: RootState) => state.itemList);
 
   const filterController = () => {
     setFilterHider(prev => !prev);
