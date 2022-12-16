@@ -61,7 +61,6 @@ function ItemList() {
       console.log(error);
     }
   }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
-  console.log('아이템 리스트 렌더렌더!');
   return (
     <section className="itemList">
       <ListHeader
