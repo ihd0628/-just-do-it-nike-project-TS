@@ -9,12 +9,11 @@ import ListHeader from './components/listHeader/ListHeader';
 import './itemList.scss';
 import { CheckList } from './types/ItemListTypes';
 import { setItemList } from '../../store';
-
-const {
-  GetQueryString,
+import {
   getFilterOptionsFromQueryList,
   getKeyByValue,
-} = require('./function/itemListMethod');
+  GetQueryString,
+} from './function/itemListMethod';
 
 function ItemList() {
   const [sortStandard, setSortStandard] = useState<string>('신상품순');
@@ -46,7 +45,7 @@ function ItemList() {
     const { queryString } = new GetQueryString(
       selectedSize,
       selectedColor,
-      checkList,
+      checkList as any,
       offset,
       limit,
       sortStandard
@@ -62,7 +61,7 @@ function ItemList() {
       console.log(error);
     }
   }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
-
+  console.log('아이템 리스트 렌더렌더!');
   return (
     <section className="itemList">
       <ListHeader

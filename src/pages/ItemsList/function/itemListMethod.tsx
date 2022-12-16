@@ -106,8 +106,4 @@ const getKeyByValue = (value: string): string => {
   );
 };
 
-module.exports = {
-  GetQueryString,
-  getFilterOptionsFromQueryList,
-  getKeyByValue,
-};
+export { GetQueryString, getFilterOptionsFromQueryList, getKeyByValue };
