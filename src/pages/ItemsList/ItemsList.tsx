@@ -13,7 +13,7 @@ import {
   getFilterOptionsFromQueryList,
   getKeyByValue,
   GetQueryString,
-} from './function/itemListMethod';
+} from './method/itemListMethod';
 
 function ItemList() {
   const [sortStandard, setSortStandard] = useState<string>('신상품순');
@@ -39,6 +39,9 @@ function ItemList() {
     if (filterOptns.sort[0]) {
       setSortStandard(getKeyByValue(filterOptns.sort[0] as string));
     }
+    return () => {
+      dispatch(setItemList([]));
+    };
   }, []);
 
   useEffect(() => {

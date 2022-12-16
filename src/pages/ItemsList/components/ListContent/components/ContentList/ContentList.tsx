@@ -20,7 +20,7 @@ function ContentList({ itemListCount }: PropsTypes) {
         </div>
         {products?.length === 0
           ? '로딩중~'
-          : products.map(
+          : products?.map(
               ({
                 id,
                 thumbnail,

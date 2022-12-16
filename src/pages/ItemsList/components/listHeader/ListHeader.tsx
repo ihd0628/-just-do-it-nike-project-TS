@@ -40,7 +40,7 @@ function ListHeader({
   return (
     <header className="listHeader">
       <div className="headerLeft">
-        Nike&rsquo;s Wecode Edition ({products.length})
+        Nike&rsquo;s Wecode Edition ({products?.length})
       </div>
       <div className="headerRight">
         <div
