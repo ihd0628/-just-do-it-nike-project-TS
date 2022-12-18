@@ -19,7 +19,6 @@ function ListContent({
   itemListCount,
   copyCurrentListUrl,
 }: PropsTypes) {
-  console.log('중간');
   return (
     <div className="listContent" style={!filterHider ? { marginLeft: 0 } : {}}>
       <ContentHeader copyCurrentListUrl={copyCurrentListUrl} />

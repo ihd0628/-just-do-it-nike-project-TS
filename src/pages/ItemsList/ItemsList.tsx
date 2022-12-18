@@ -23,12 +23,11 @@ function ItemList() {
   const [selectedSize, setSelectedSize] = useState<string[]>([]);
   const [offset, setOffset] = useState<number>(0);
   const [limit, setLimit] = useState<number>(5);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const itemListCount = useRef<HTMLDivElement>(null);
 
   const dispatch = useDispatch();
-  console.log('부모');
   useEffect(() => {
     const filterOptns = getFilterOptionsFromQueryList(searchParams);
     if (filterOptns.size) setSelectedSize([...filterOptns.size]);
@@ -57,8 +56,6 @@ function ItemList() {
     fetch(`${IP_CONFIG}/products?${queryString}`)
       .then(response => response.json())
       .then(({ list }) => {
-        console.log('통신');
-        setSearchParams(queryString);
         dispatch(setItemList(list));
       })
       .catch(error => console.log(error));
