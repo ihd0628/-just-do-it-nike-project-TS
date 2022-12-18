@@ -57,8 +57,8 @@ function ItemList() {
     try {
       fetch(`${IP_CONFIG}/products?${queryString}`)
         .then(response => response.json())
-        .then(result => {
-          dispatch(setItemList(result.list));
+        .then(({ list }) => {
+          dispatch(setItemList(list));
         });
     } catch (error: any) {
       console.log(error);

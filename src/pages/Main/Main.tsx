@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { IP_CONFIG } from '../../config';
 import './Main.scss';
+import { RootState, setItemList } from '../../store';
 
 function Main() {
-  const [itemList, setItemList] = useState([]);
+  const products = useSelector((state: RootState) => state.itemList);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch(`${IP_CONFIG}/products?limit=19&offset=0`)
       .then(response => response.json())
-      .then(({ list }) => setItemList(list))
+      .then(({ list }) => {
+        dispatch(setItemList(list));
+      })
       .catch(error => console.log(error));
+
+    return () => {
+      dispatch(setItemList([]));
+    };
   }, []);
 
   return (
@@ -71,7 +80,7 @@ function Main() {
       </div>
       <h1 className="thirdImgTitle categoryText">추천 상품</h1>
       <div className="thirdTitle">
-        {itemList.map(
+        {products.map(
           ({ id, thumbnail, productName, brandName, retailPrice }) => {
             return (
               <div className="thirdImgBox" key={id}>
