@@ -1,18 +1,23 @@
 import React from 'react';
-import HEADER_ITEMS from './mockData/headerItems';
 import './contentHeader.scss';
 
-function ContentHeader() {
+interface PropsTypes {
+  copyCurrentListUrl: () => void;
+}
+
+function ContentHeader({ copyCurrentListUrl }: PropsTypes) {
   return (
     <div className="contentHeader">
       <div className="contentHeaderContainer">
-        {HEADER_ITEMS.map(item => {
-          return (
-            <div className="headerContent" key={item}>
-              <div className="textContainer">{item}</div>
-            </div>
-          );
-        })}
+        <div className="headerContent">
+          <div
+            role="presentation"
+            className="textContainer"
+            onClick={copyCurrentListUrl}
+          >
+            현재 상품 리스트 링크 공유
+          </div>
+        </div>
       </div>
     </div>
   );

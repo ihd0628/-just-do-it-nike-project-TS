@@ -9,6 +9,7 @@ interface PropsTypes {
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
   itemListCount: React.RefObject<HTMLDivElement>;
+  copyCurrentListUrl: () => void;
 }
 
 function ListContent({
@@ -16,10 +17,12 @@ function ListContent({
   setOffset,
   setLimit,
   itemListCount,
+  copyCurrentListUrl,
 }: PropsTypes) {
+  console.log('중간');
   return (
     <div className="listContent" style={!filterHider ? { marginLeft: 0 } : {}}>
-      <ContentHeader />
+      <ContentHeader copyCurrentListUrl={copyCurrentListUrl} />
       <ContentList itemListCount={itemListCount} />
 
       <ContentNext setOffset={setOffset} setLimit={setLimit} />

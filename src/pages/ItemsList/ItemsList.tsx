@@ -28,7 +28,7 @@ function ItemList() {
   const itemListCount = useRef<HTMLDivElement>(null);
 
   const dispatch = useDispatch();
-
+  console.log('부모');
   useEffect(() => {
     const filterOptns = getFilterOptionsFromQueryList(searchParams);
     if (filterOptns.size) setSelectedSize([...filterOptns.size]);
@@ -53,17 +53,32 @@ function ItemList() {
       limit,
       sortStandard
     );
-    setSearchParams(queryString);
-    try {
-      fetch(`${IP_CONFIG}/products?${queryString}`)
-        .then(response => response.json())
-        .then(({ list }) => {
-          dispatch(setItemList(list));
-        });
-    } catch (error: any) {
-      console.log(error);
-    }
+
+    fetch(`${IP_CONFIG}/products?${queryString}`)
+      .then(response => response.json())
+      .then(({ list }) => {
+        console.log('통신');
+        setSearchParams(queryString);
+        dispatch(setItemList(list));
+      })
+      .catch(error => console.log(error));
   }, [offset, limit, checkList, selectedColor, selectedSize, sortStandard]);
+
+  const copyCurrentListUrl = () => {
+    const { queryString } = new GetQueryString(
+      selectedSize,
+      selectedColor,
+      checkList as any,
+      offset,
+      limit,
+      sortStandard
+    );
+    navigator.clipboard
+      .writeText(`localhost:3000/item-list?${queryString}`)
+      .then(() => {
+        alert('복사되었지롱');
+      });
+  };
   return (
     <section className="itemList">
       <ListHeader
@@ -88,6 +103,7 @@ function ItemList() {
           setOffset={setOffset}
           setLimit={setLimit}
           itemListCount={itemListCount}
+          copyCurrentListUrl={copyCurrentListUrl}
         />
       </div>
     </section>

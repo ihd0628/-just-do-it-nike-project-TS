@@ -32,7 +32,6 @@ function ListHeader({
     const newStandard = event.target as HTMLElement;
     const newStandardValue = newStandard.innerText;
     setSortSetter(prev => !prev);
-
     if (newStandard.className === 'sortStandard')
       setSortStandard(newStandardValue);
   };
