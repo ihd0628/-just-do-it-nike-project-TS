@@ -63,6 +63,10 @@
 - 장바구니
 - Wish List
 
+## 관련 포스팅
+
+<a href='https://velog.io/@hoon0123/%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%A1%B0%EA%B7%B8%EB%A7%88%ED%95%9C-%EB%85%B8%EB%A0%A5%EB%93%A4-1'>관련 포스팅 링크</a>
+
 ## commit convention
 
 ### convention 형식
