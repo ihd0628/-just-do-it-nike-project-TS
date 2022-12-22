@@ -65,7 +65,9 @@
 
 ## 관련 포스팅
 
-<a href='https://velog.io/@hoon0123/%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%A1%B0%EA%B7%B8%EB%A7%88%ED%95%9C-%EB%85%B8%EB%A0%A5%EB%93%A4-1'>렌더링 최적화 기록</a>
+<a href='https://velog.io/@hoon0123/%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%A1%B0%EA%B7%B8%EB%A7%88%ED%95%9C-%EB%85%B8%EB%A0%A5%EB%93%A4-1'>리팩토링 기록</a>
+
+<a href='https://velog.io/@hoon0123/%EB%82%98%EC%9D%B4%ED%82%A4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%B5%9C%EC%A2%85-%ED%9A%8C%EA%B3%A0'>프로젝트 회고</a>
 
 ## commit convention
 
