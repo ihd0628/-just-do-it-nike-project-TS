@@ -12,6 +12,10 @@
 
 - 정적타이핑을 통한 사전 디버깅
 
+ <img src="https://img.shields.io/badge/Redux-764ABC?style=flat&logo=Redux&logoColor=white"/>
+
+- 전역 상태 관리
+
  <img src="https://img.shields.io/badge/Scss-cc6699.svg?&style=for-the-badge&logo=Sass&logoColor=white"/>
 
 - Nesting을 통한 코드 가독성 및 유지보수성
