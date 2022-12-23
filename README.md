@@ -2,7 +2,7 @@
 
 ## 기술 스택
 
-![react](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+<img src="https://img.shields.io/badge/react-20232A?style=flat&logo=react&logoColor=61DAFB"/>
 
 <!--
 - 대규모 커뮤니티를 통한 정보 습득에 유리
@@ -17,7 +17,7 @@
 <!-- 
 - 전역 상태 관리 -->
 
- <img src="https://img.shields.io/badge/Scss-cc6699.svg?&style=for-the-badge&logo=Sass&logoColor=white"/>
+ <img src="https://img.shields.io/badge/Scss-cc6699.svg?&style=flat-square&logo=Sass&logoColor=white"/>
 <!-- 
 - Nesting을 통한 코드 가독성 및 유지보수성
 - 변수를 이용한 CSS 속성 관리 -->
