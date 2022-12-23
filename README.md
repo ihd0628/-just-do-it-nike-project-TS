@@ -59,3 +59,21 @@ convention 명 : 커밋 내역
 | chore    | 패키지 매니저 설정                                    |
 | rename   | 파일 혹은 폴더명 수정하거나 옮기는 작업               |
 | remove   | 파일을 삭제하는 작업만 하는 경우                      |
+
+## 팀원
+
+<table>
+    <tr>
+        <td align="center"><img src="https://user-images.githubusercontent.com/93499154/208896498-126d95de-db48-4a7d-a7bf-27151ec93b5c.png" width="100">
+        </td>
+        <td align="center"><img src="https://avatars.githubusercontent.com/u/109199929?v=4" width="100"></td>
+        <td align="center"><img src="https://avatars.githubusercontent.com/u/107909808?v=4" width="100"></td>
+        <td align="center"><img src="https://avatars.githubusercontent.com/u/109051647?v=4" width="100"></td>
+    </tr>
+    <tr>
+        <td align="center"><a href="https://github.com/ihd0628">이승훈</a></td>
+        <td align="center"><a href="https://github.com/1211lys">이윤승</a></td>
+        <td align="center"><a href="https://github.com/blackkong34">이유진</a></td>
+        <td align="center"><a href="https://github.com/0taepark">박영태</a></td>
+    </tr>
+</table>
