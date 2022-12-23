@@ -1,18 +1,18 @@
 # 나이키
 
-## 기술 스택
+## 기술 스택 및 이유
 
 ![react](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
-
-선택 이유
 
 - 대규모 커뮤니티를 통한 정보 습득에 유리
 - JSX 문법을 사용함에 따라, JavaScript에 대한 지식을 바탕으로 접근성이 용이하다 판단
   </br>
 
-![Styled Components](https://img.shields.io/badge/Scss-cc6699.svg?&style=for-the-badge&logo=Sass&logoColor=white)
+ <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
 
-선택 이유
+- 정적타이핑을 통한 사전 디버깅
+
+ <img src="https://img.shields.io/badge/Scss-cc6699.svg?&style=for-the-badge&logo=Sass&logoColor=white"/>
 
 - Nesting을 통한 코드 가독성 및 유지보수성
 - 변수를 이용한 CSS 속성 관리
